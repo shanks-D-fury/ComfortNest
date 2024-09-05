@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
+const hotelInfo = require("./models/hotelListing");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -19,11 +20,25 @@ main()
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect("mongodb://127.0.0.1:27017/telegram");
+	await mongoose.connect("mongodb://127.0.0.1:27017/ComfortNest");
 }
 app.get("/", (req, res) => {
 	res.send("working");
 });
+
+//This is to upload a test element into the data base
+app.get("/testListing", async (req, res) => {
+	let sampleListing = new hotelInfo({
+		title: "New villa",
+		description: "Latest villa in the hole world",
+		price: 1200,
+		country: "India",
+		location: "Mangaluru",
+	});
+	await sampleListing.save();
+	res.send("sucessful savce");
+});
+
 app.listen(8080, () => {
 	console.log("App listning in port : 8080");
 });

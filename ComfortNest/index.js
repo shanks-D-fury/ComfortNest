@@ -39,15 +39,29 @@ app.get("/", (req, res) => {
 // 	res.send("sucessful savce");
 // });
 
+//Index route
 app.get("/listings", async (req, res) => {
 	const featchedInfo = await hotelInfo.find();
 	res.render("listings/index.ejs", { featchedInfo });
 });
 
+//new route
+app.get("/listings/new", (req, res) => {
+	res.render("listings/new.ejs");
+});
+
+//show route
 app.get("/listings/:id", async (req, res) => {
 	let { id } = req.params;
 	const listing = await hotelInfo.findById(id);
 	res.render("listings/show.ejs", { listing });
+});
+
+//new post route
+app.post("/listings/new", async (req, res) => {
+	const newHotelInfo = new hotelInfo(req.body.Listing);
+	await newHotelInfo.save();
+	res.redirect("/listings");
 });
 
 app.listen(8080, () => {

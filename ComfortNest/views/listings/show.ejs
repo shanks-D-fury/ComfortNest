@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ComfortNest</title>
+		<link rel="stylesheet" href="/listings/style.css" />
+	</head>
+	<body>
+		<h2>Hotel Info</h2>
+		<ul>
+			<li><%= listing.title%></li>
+			<li><%= listing.description%></li>
+			<!-- used the rupee symbol and converted the price to indian standard -->
+			<li>&#8377; <%= listing.price.toLocaleString("en-in")%></li>
+			<li><%= listing.location%></li>
+			<li><%= listing.country%></li>
+			<li><a href="/listings" id="normalTitleLink">Go Back</a></li>
+		</ul>
+	</body>
+</html>

@@ -17,6 +17,13 @@
 			<li><%= listing.country%></li>
 		</ul>
 		<h3>
+			<form
+				action="/listings/<%=listing._id  %>?_method=DELETE"
+				method="post"
+				class="redColorLink inlineHeadings"
+			>
+				<button>DELETE</button>
+			</form>
 			<a
 				href="/listings/<%=listing._id  %>/edit"
 				class="inlineHeadings"

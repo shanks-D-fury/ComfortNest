@@ -1,3 +1,7 @@
 #normalTitleLink {
 	text-decoration: none;
 }
+.inlineHeadings {
+	display: inline-block;
+	margin-right: 20px;
+}

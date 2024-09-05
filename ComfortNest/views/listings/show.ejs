@@ -15,7 +15,17 @@
 			<li>&#8377; <%= listing.price.toLocaleString("en-in")%></li>
 			<li><%= listing.location%></li>
 			<li><%= listing.country%></li>
-			<li><a href="/listings" id="normalTitleLink">Go Back</a></li>
 		</ul>
+		<h3>
+			<a
+				href="/listings/<%=listing._id  %>/edit"
+				class="inlineHeadings"
+				id="normalTitleLink"
+				>Edit</a
+			>
+			<a href="/listings" id="normalTitleLink" class="inlineHeadings"
+				>Go Back</a
+			>
+		</h3>
 	</body>
 </html>

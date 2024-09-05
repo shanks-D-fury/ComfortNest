@@ -26,19 +26,6 @@ app.get("/", (req, res) => {
 	res.send("working");
 });
 
-// //This is to upload a test element into the data base
-// app.get("/testListing", async (req, res) => {
-// 	let sampleListing = new hotelInfo({
-// 		title: "New villa",
-// 		description: "Latest villa in the hole world",
-// 		price: 1200,
-// 		country: "India",
-// 		location: "Mangaluru",
-// 	});
-// 	await sampleListing.save();
-// 	res.send("sucessful savce");
-// });
-
 //Index route
 app.get("/listings", async (req, res) => {
 	const featchedInfo = await hotelInfo.find();
@@ -64,6 +51,32 @@ app.post("/listings/new", async (req, res) => {
 	res.redirect("/listings");
 });
 
+//edit route
+app.get("/listings/:id/edit", async (req, res) => {
+	let { id } = req.params;
+	const Listing = await hotelInfo.findById(id);
+	res.render("listings/edit.ejs", { Listing });
+});
+
+app.put("/listings/:id", async (req, res) => {
+	let { id } = req.params;
+	await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
+	res.redirect(`/listings/${id}`);
+});
+
 app.listen(8080, () => {
 	console.log("App listning in port : 8080");
 });
+
+// //This is to upload a test element into the data base
+// app.get("/testListing", async (req, res) => {
+// 	let sampleListing = new hotelInfo({
+// 		title: "New villa",
+// 		description: "Latest villa in the hole world",
+// 		price: 1200,
+// 		country: "India",
+// 		location: "Mangaluru",
+// 	});
+// 	await sampleListing.save();
+// 	res.send("sucessful savce");
+// });

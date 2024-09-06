@@ -1,39 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>ComfortNest</title>
-	</head>
-	<body>
-		<h3>Create New Info</h3>
-		<form action="/listings/new" method="post">
-			<!-- this is a easy and method to enter the entire details in one object known as "Listing" -->
-			<input name="Listing[title]" placeholder="Enter Title" type="text" />
-			<br /><br />
-			<textarea
-				name="Listing[description]"
-				placeholder="Enter description"
-				type="text"
-			></textarea>
-			<br /><br />
-			<input
-				name="Listing[image]"
-				placeholder="Enter image URL/link"
-				type="text"
-			/>
-			<br /><br />
-			<input name="Listing[price]" placeholder="Enter price" type="number" />
-			<br /><br />
-			<input name="Listing[country]" placeholder="Enter country" type="text" />
-			<br /><br />
-			<input
-				name="Listing[location]"
-				placeholder="Enter location"
-				type="text"
-			/>
-			<br /><br />
-			<button>submit</button>
-		</form>
-	</body>
-</html>
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+	<h3>Create New Info</h3>
+	<form action="/listings/new" method="post">
+		<!-- this is a easy and method to enter the entire details in one object known as "Listing" -->
+		<input name="Listing[title]" placeholder="Enter Title" type="text" />
+		<br /><br />
+		<textarea
+			name="Listing[description]"
+			placeholder="Enter description"
+			type="text"
+		></textarea>
+		<br /><br />
+		<input
+			name="Listing[image]"
+			placeholder="Enter image URL/link"
+			type="text"
+		/>
+		<br /><br />
+		<input name="Listing[price]" placeholder="Enter price" type="number" />
+		<br /><br />
+		<input name="Listing[country]" placeholder="Enter country" type="text" />
+		<br /><br />
+		<input name="Listing[location]" placeholder="Enter location" type="text" />
+		<br /><br />
+		<button>submit</button>
+	</form>
+</body>

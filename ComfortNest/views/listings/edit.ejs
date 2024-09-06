@@ -1,45 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>ComfortNest</title>
-	</head>
-	<body>
-		<h3>Update Info</h3>
-		<form action="/listings/<%= Listing._id %>?_method=PUT" method="post">
-			<!-- this is a easy and method to enter the entire details in one object known as "Listing" -->
-			<input name="Listing[title]" value="<%= Listing.title %>" type="text" />
-			<br /><br />
-			<textarea
-				name="Listing[description]"
-				placeholder="Enter description"
-				type="text"
-			>
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+	<h3>Update Info</h3>
+	<form action="/listings/<%= Listing._id %>?_method=PUT" method="post">
+		<!-- this is a easy and method to enter the entire details in one object known as "Listing" -->
+		<input name="Listing[title]" value="<%= Listing.title %>" type="text" />
+		<br /><br />
+		<textarea
+			name="Listing[description]"
+			placeholder="Enter description"
+			type="text"
+		>
 <%= Listing.description %></textarea
-			>
-			<br /><br />
-			<input
-				value="<%= Listing.image.url %>"
-				placeholder="Enter imageimage URL/link"
-				type="text"
-			/>
-			<br /><br />
-			<input name="Listing[price]" value="<%= Listing.price %>" type="number" />
-			<br /><br />
-			<input
-				name="Listing[country]"
-				value="<%= Listing.country %>"
-				type="text"
-			/>
-			<br /><br />
-			<input
-				name="Listing[location]"
-				value="<%= Listing.location %>"
-				type="text"
-			/>
-			<br /><br />
-			<button>submit</button>
-		</form>
-	</body>
-</html>
+		>
+		<br /><br />
+		<input
+			value="<%= Listing.image.url %>"
+			placeholder="Enter imageimage URL/link"
+			type="text"
+		/>
+		<br /><br />
+		<input name="Listing[price]" value="<%= Listing.price %>" type="number" />
+		<br /><br />
+		<input name="Listing[country]" value="<%= Listing.country %>" type="text" />
+		<br /><br />
+		<input
+			name="Listing[location]"
+			value="<%= Listing.location %>"
+			type="text"
+		/>
+		<br /><br />
+		<button>submit</button>
+	</form>
+</body>

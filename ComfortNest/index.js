@@ -4,9 +4,11 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const hotelInfo = require("./models/hotelListing");
+const ejsMate = require("ejs-mate");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.engine("ejs", ejsMate);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -88,3 +90,9 @@ app.listen(8080, () => {
 // 	await sampleListing.save();
 // 	res.send("sucessful savce");
 // });
+
+// The below code is to use the header and footer in ejs mate
+// <% layout('boilerplate') -%>
+// <% block('head').append('<link type="text/css" href="/foo.css">') %>
+// <h1>I am the template</h1>
+// <% block('footer').append('<script src="/bar.js"></script>') %>

@@ -8,3 +8,12 @@
 .redColorLink {
 	color: red;
 }
+/* tempreary navbar code */
+#boilerplateNavbar {
+	background-color: lightblue;
+	text-align: center;
+	margin-left: -10%;
+}
+body {
+	margin-left: 10%;
+}

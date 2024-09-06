@@ -1,0 +1,27 @@
+.fa-anchor {
+	color: #ff385c;
+	/* color: lightcoral; */
+	font-size: 2rem;
+}
+.navbar-nav {
+	font-size: 1.2rem;
+}
+.navbar-toggler {
+	background-color: white;
+}
+.border-bottom {
+	border-bottom-width: 0.1rem !important;
+}
+.nav-link {
+	color: #181717 !important;
+}
+#navbarMainTag {
+	position: relative;
+	left: 1rem;
+	font-size: 1.5rem;
+	margin-right: 2vw;
+	letter-spacing: 0.1rem;
+}
+#navbarMainaTagSmallText {
+	font-size: 1.25rem;
+}

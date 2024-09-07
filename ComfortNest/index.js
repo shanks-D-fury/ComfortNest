@@ -17,7 +17,7 @@ app.use(methodOverride("_method"));
 
 main()
 	.then(() => {
-		console.log("Connection successful");
+		console.log("Mongo DB Connection Successful");
 	})
 	.catch((err) => console.log(err));
 
@@ -75,7 +75,7 @@ app.delete("/listings/:id", async (req, res) => {
 });
 
 app.listen(8080, () => {
-	console.log("App listning in port : 8080");
+	console.log("ComfortNest Listning {Port: 8080}");
 });
 
 // //This is to upload a test element into the data base

@@ -1,0 +1,25 @@
+.row {
+	justify-content: space-between !important;
+}
+.card {
+	border: none !important;
+	margin-bottom: 2rem;
+	box-shadow: 0 0.25rem 0.35rem rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+	transform: translateY(-0.75rem) scale(1.02);
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+}
+.card-img-top {
+	margin-top: 0.5rem;
+	border-radius: 1rem;
+	height: 20rem;
+}
+.card-body {
+	padding: 0;
+	padding-top: 1rem;
+}
+.card-text {
+	color: black;
+}

@@ -1,16 +1,27 @@
 <% layout("/layouts/boilerplate.ejs") -%>
+<link rel="stylesheet" href="/listings/cards.css" />
 <body>
-	<h2>Hotels</h2>
+	<h1></h1>
 	<!-- <form action="/listings/new" method="get">
 		<button>Create New Hotel Info</button>
 	</form> -->
-	<ul>
+	<div class="row row-col-lg-4">
 		<% for(let listing of featchedInfo) {%>
-		<li>
-			<a href="/listings/<%= listing._id%>" id="normalTitleLink"
-				><%=listing.title%></a
-			>
-		</li>
+		<div class="card" style="width: 20rem">
+			<a href="/listings/<%= listing._id%>" id="normalTitleLink">
+				<img
+					src="<%=listing.image.url%>"
+					class="card-img-top"
+					alt="<%=listing.title%>"
+				/>
+				<div class="card-body">
+					<p class="card-text">
+						<b> <%=listing.title%></b> <br />
+						&#8377; <%= listing.price.toLocaleString("en-in")%> /night
+					</p>
+				</div>
+			</a>
+		</div>
 		<% } %>
-	</ul>
+	</div>
 </body>

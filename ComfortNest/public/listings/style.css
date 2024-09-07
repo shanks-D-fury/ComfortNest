@@ -1,3 +1,9 @@
+body {
+	font-family: "Josefin Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: italic;
+}
 #normalTitleLink {
 	text-decoration: none;
 }
@@ -12,5 +18,5 @@
 #boilerplateNavbar {
 	background-color: lightblue;
 	text-align: center;
-	margin-left: -10%;
+	/* margin-left: -10%; */
 }

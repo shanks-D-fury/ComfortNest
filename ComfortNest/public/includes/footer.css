@@ -1,0 +1,34 @@
+.f-info {
+	height: 5.25rem;
+	display: flex;
+	justify-content: center;
+	background-color: rgb(238, 234, 234);
+	flex-wrap: wrap;
+	align-items: center;
+	padding-top: 0.25rem;
+	border-top: 0.15rem #dee2e6 solid;
+}
+.f-info-links a {
+	text-decoration: none;
+	color: #222222;
+}
+.f-info-links a:hover {
+	text-decoration: underline;
+}
+.f-info-socialMedia,
+.f-info-links {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.f-info-socialMedia i,
+.f-info-links a {
+	margin-right: 1rem;
+}
+.f-info-socialMedia i {
+	font-size: 1.2rem;
+}
+.f-info-companyName {
+	position: relative;
+	left: -1%;
+}

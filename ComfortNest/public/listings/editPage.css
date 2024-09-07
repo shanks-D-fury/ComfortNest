@@ -1,0 +1,15 @@
+label {
+	font-size: larger;
+}
+.form-control:focus {
+	border-color: rgb(255, 56, 92, 0.35); /* Optional: Change the border color */
+	box-shadow: 0 0 5px 3px rgb(255, 56, 92, 0.35); /* Custom green shadow */
+}
+.btn-dark {
+	background-color: #ff385c;
+	border: none;
+	margin-bottom: 1rem;
+}
+.form-title::placeholder {
+	color: #ff385c !important;
+}

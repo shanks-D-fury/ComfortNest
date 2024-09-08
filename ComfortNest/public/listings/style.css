@@ -1,11 +1,12 @@
 body {
 	font-family: "Josefin Sans", sans-serif;
 	font-optical-sizing: auto;
-	font-weight: 400;
+	font-weight: 360;
 	font-style: italic;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	min-width: 450px;
 }
 .container {
 	flex: 1;

@@ -1,0 +1,36 @@
+.card-img-top {
+	border-radius: 0.5rem;
+	width: 80%; /* Full width of container */
+	height: auto;
+	object-fit: fill;
+}
+@media (min-width: 650px) {
+	.card-img-top {
+		/* width: 20vw;
+		height: 30vh; */
+		aspect-ratio: 4/2;
+	}
+}
+.card {
+	border: none;
+}
+.card-body {
+	padding: 1rem 0;
+}
+.card-deleteBtn {
+	display: inline-block;
+	margin-right: 1%;
+}
+.btn-dark {
+	margin-right: 1%;
+}
+.col-btns {
+	margin-bottom: 1rem;
+}
+.row-coustom {
+	display: flex;
+	justify-content: center;
+}
+.show-non-italic {
+	font-style: normal;
+}

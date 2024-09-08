@@ -2,12 +2,13 @@
 	width: 100%;
 	height: 3rem;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	background-color: rgb(238, 234, 234);
 	/* flex-wrap: wrap; */
 	align-items: center;
 	padding-top: 0.25rem;
 	border-top: 0.15rem #dee2e6 solid;
+	font-size: 1.1rem;
 }
 .f-info-links a {
 	text-decoration: none;
@@ -16,18 +17,15 @@
 .f-info-links a:hover {
 	text-decoration: underline;
 }
-
-.f-info-links {
-	margin-left: 5%;
-}
 .f-info-socialMedia {
-	margin-right: 1rem;
+	margin-right: 2%;
 }
+.f-info-name {
+	margin-left: 2%;
+}
+
 .f-info-socialMedia i {
-	font-size: 1.1rem;
-	margin-right: 1rem;
+	font-size: 1.2rem;
+	margin-right: 0.5rem;
 	text-align: right;
-}
-.f-info-companyName {
-	justify-self: flex-start;
 }

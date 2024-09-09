@@ -1,6 +1,6 @@
 .card-img-top {
 	border-radius: 0.5rem;
-	width: 80%; /* Full width of container */
+	width: 50%; /* Full width of container */
 	height: auto;
 	object-fit: fill;
 }
@@ -8,7 +8,7 @@
 	.card-img-top {
 		/* width: 20vw;
 		height: 30vh; */
-		aspect-ratio: 4/2;
+		aspect-ratio: 1/1;
 	}
 }
 .card {

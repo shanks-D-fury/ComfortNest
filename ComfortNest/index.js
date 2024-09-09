@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const hotelInfo = require("./models/hotelListing");
 const ejsMate = require("ejs-mate");
 const AsyncWrap = require("./utils/AsyncWrap");
+const ExpressError = require("./utils/ExpressError.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -30,10 +31,13 @@ app.get("/", (req, res) => {
 });
 
 //Index route
-app.get("/listings", async (req, res) => {
-	const featchedInfo = await hotelInfo.find();
-	res.render("listings/index.ejs", { featchedInfo });
-});
+app.get(
+	"/listings",
+	AsyncWrap(async (req, res) => {
+		const featchedInfo = await hotelInfo.find();
+		res.render("listings/index.ejs", { featchedInfo });
+	})
+);
 
 //new route
 app.get("/listings/new", (req, res) => {
@@ -41,46 +45,64 @@ app.get("/listings/new", (req, res) => {
 });
 
 //show route
-app.get("/listings/:id", async (req, res) => {
-	let { id } = req.params;
-	const listing = await hotelInfo.findById(id);
-	res.render("listings/show.ejs", { listing });
-});
+app.get(
+	"/listings/:id",
+	AsyncWrap(async (req, res) => {
+		let { id } = req.params;
+		const listing = await hotelInfo.findById(id);
+		res.render("listings/show.ejs", { listing });
+	})
+);
 
 //new post route
-app.post("/listings/new", async (req, res, next) => {
-	try {
+app.post(
+	"/listings/new",
+	AsyncWrap(async (req, res, next) => {
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		await newHotelInfo.save();
 		res.redirect("/listings");
-	} catch (err) {
-		next(err);
-	}
-});
+	})
+);
 
 //edit route
-app.get("/listings/:id/edit", async (req, res) => {
-	let { id } = req.params;
-	const Listing = await hotelInfo.findById(id);
-	res.render("listings/edit.ejs", { Listing });
-});
+app.get(
+	"/listings/:id/edit",
+	AsyncWrap(async (req, res) => {
+		let { id } = req.params;
+		const Listing = await hotelInfo.findById(id);
+		res.render("listings/edit.ejs", { Listing });
+	})
+);
 
-app.put("/listings/:id", async (req, res) => {
-	let { id } = req.params;
-	await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
-	res.redirect(`/listings/${id}`);
-});
+app.put(
+	"/listings/:id",
+	AsyncWrap(async (req, res) => {
+		let { id } = req.params;
+		await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
+		res.redirect(`/listings/${id}`);
+	})
+);
 
 //Delete route
-app.delete("/listings/:id", async (req, res) => {
-	let { id } = req.params;
-	let deletedListing = await hotelInfo.findByIdAndDelete(id);
-	// console.log(deletedListing);
-	res.redirect(`/listings/`);
+app.delete(
+	"/listings/:id",
+	AsyncWrap(async (req, res) => {
+		let { id } = req.params;
+		let deletedListing = await hotelInfo.findByIdAndDelete(id);
+		// console.log(deletedListing);
+		res.redirect(`/listings/`);
+	})
+);
+
+// This is used to handle the unknown api requests
+app.all("*", (req, res, next) => {
+	next(new ExpressError(404, "Page Not Found!"));
 });
 
+//to handle the error we use this middleware
 app.use((err, req, res, next) => {
-	res.send("something went wrong");
+	let { statusCode = 500, message = "Something Went Wrong!" } = err;
+	res.status(statusCode).send(message);
 });
 
 app.listen(8080, () => {

@@ -54,10 +54,13 @@ app.get(
 	})
 );
 
-//new post route
+//new post route //next is not required because we have declared that in the ExpreesError
 app.post(
 	"/listings/new",
-	AsyncWrap(async (req, res, next) => {
+	AsyncWrap(async (req, res) => {
+		if (!req.body.Listing) {
+			throw new ExpressError(400, "Please provide valid data");
+		}
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		await newHotelInfo.save();
 		res.redirect("/listings");
@@ -102,7 +105,7 @@ app.all("*", (req, res, next) => {
 //to handle the error we use this middleware
 app.use((err, req, res, next) => {
 	let { statusCode = 500, message = "Something Went Wrong!" } = err;
-	res.status(statusCode).send(message);
+	res.status(statusCode).render("ErrorPage/Error.ejs", { message, statusCode });
 });
 
 app.listen(8080, () => {

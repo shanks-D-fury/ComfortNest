@@ -4,7 +4,12 @@
 	<div class="row">
 		<div class="col-6 offset-3">
 			<h3>Update Listing</h3>
-			<form action="/listings/<%= Listing._id %>?_method=PUT" method="post">
+			<form
+				action="/listings/<%= Listing._id %>?_method=PUT"
+				method="post"
+				novalidate
+				class="needs-validation"
+			>
 				<div class="mb-2">
 					<label for="title" class="form-title">Title</label>
 					<input
@@ -12,8 +17,10 @@
 						placeholder="Hotel / Residance name"
 						value="<%= Listing.title %>"
 						type="text"
+						required
 						class="form-control"
 					/>
+					<div class="invalid-feedback">Please enter valid Title</div>
 				</div>
 				<div class="mb-2">
 					<label for="description" class="form-description">Description</label
@@ -21,6 +28,7 @@
 						name="Listing[description]"
 						placeholder="Description of hotel"
 						type="text"
+						required
 						class="form-control"
 					>
 <%= Listing.description %></textarea
@@ -44,8 +52,10 @@
 							placeholder="14684"
 							type="number"
 							value="<%= Listing.price %>"
+							required
 							class="form-control"
 						/>
+						<div class="invalid-feedback">Please enter valid Price</div>
 					</div>
 					<div class="mb-2 col-md-8">
 						<label for="country" class="form-country">Country</label>
@@ -53,9 +63,11 @@
 							name="Listing[country]"
 							placeholder="India"
 							type="text"
+							required
 							value="<%= Listing.country %>"
 							class="form-control"
 						/>
+						<div class="invalid-feedback">Please enter valid Country Name</div>
 					</div>
 				</div>
 				<div class="mb-3">
@@ -63,10 +75,12 @@
 					<input
 						name="Listing[location]"
 						placeholder="Bengaluru , KGF"
+						required
 						value="<%= Listing.location %>"
 						type="text"
 						class="form-control"
 					/>
+					<div class="invalid-feedback">Please enter valid Location</div>
 				</div>
 				<button class="btn btn-dark">Edit</button>
 			</form>

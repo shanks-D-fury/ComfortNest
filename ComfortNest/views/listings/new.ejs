@@ -4,7 +4,12 @@
 	<div class="row">
 		<div class="col-6 offset-3">
 			<h3>Create New Listing</h3>
-			<form action="/listings/new" method="post">
+			<form
+				action="/listings/new"
+				method="post"
+				novalidate
+				class="needs-validation"
+			>
 				<div class="mb-2">
 					<label for="title" class="form-title">Title</label>
 					<input
@@ -12,7 +17,9 @@
 						placeholder="Hotel / Residance name"
 						type="text"
 						class="form-control"
+						required
 					/>
+					<div class="invalid-feedback">Please enter valid Title</div>
 				</div>
 				<div class="mb-2">
 					<label for="description" class="form-description">Description</label
@@ -21,6 +28,7 @@
 						placeholder="Description of hotel"
 						type="text"
 						class="form-control"
+						required
 					></textarea>
 				</div>
 				<div class="mb-2">
@@ -40,7 +48,9 @@
 							placeholder="14684"
 							type="number"
 							class="form-control"
+							required
 						/>
+						<div class="invalid-feedback">Please enter valid Price</div>
 					</div>
 					<div class="mb-2 col-md-8">
 						<label for="country" class="form-country">Country</label>
@@ -49,7 +59,9 @@
 							placeholder="India"
 							type="text"
 							class="form-control"
+							required
 						/>
+						<div class="invalid-feedback">Please enter valid Country Name</div>
 					</div>
 				</div>
 
@@ -57,10 +69,12 @@
 					<label for="location" class="form-location">Location</label>
 					<input
 						name="Listing[location]"
-						placeholder="Bengaluru , KGF"
+						placeholder="Bengaluru / KGF"
 						type="text"
 						class="form-control"
+						required
 					/>
+					<div class="invalid-feedback">Please enter valid Location</div>
 				</div>
 				<button class="btn btn-dark">Add</button>
 			</form>

@@ -13,3 +13,8 @@ label {
 .form-title::placeholder {
 	color: #ff385c !important;
 }
+
+.row input::placeholder,
+.row textarea::placeholder {
+	opacity: 0.5;
+}

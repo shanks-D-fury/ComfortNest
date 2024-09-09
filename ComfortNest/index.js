@@ -75,7 +75,7 @@ app.delete("/listings/:id", async (req, res) => {
 });
 
 app.listen(8080, () => {
-	console.log("ComfortNest Listning {Port: 8080}");
+	console.log("ComfortNest Listening {Port: 8080}");
 });
 
 // //This is to upload a test element into the data base

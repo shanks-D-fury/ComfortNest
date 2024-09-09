@@ -5,6 +5,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const hotelInfo = require("./models/hotelListing");
 const ejsMate = require("ejs-mate");
+const AsyncWrap = require("./utils/AsyncWrap");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -47,10 +48,14 @@ app.get("/listings/:id", async (req, res) => {
 });
 
 //new post route
-app.post("/listings/new", async (req, res) => {
-	const newHotelInfo = new hotelInfo(req.body.Listing);
-	await newHotelInfo.save();
-	res.redirect("/listings");
+app.post("/listings/new", async (req, res, next) => {
+	try {
+		const newHotelInfo = new hotelInfo(req.body.Listing);
+		await newHotelInfo.save();
+		res.redirect("/listings");
+	} catch (err) {
+		next(err);
+	}
 });
 
 //edit route
@@ -72,6 +77,10 @@ app.delete("/listings/:id", async (req, res) => {
 	let deletedListing = await hotelInfo.findByIdAndDelete(id);
 	// console.log(deletedListing);
 	res.redirect(`/listings/`);
+});
+
+app.use((err, req, res, next) => {
+	res.send("something went wrong");
 });
 
 app.listen(8080, () => {

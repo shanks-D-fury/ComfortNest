@@ -1,28 +1,23 @@
-//Imported from npm
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-
-//Custom Functions
 const hotelInfo = require("./models/hotelListing");
 const AsyncWrap = require("./utils/AsyncWrap");
 const ExpressError = require("./utils/ExpressError.js");
 const { schema } = require("./utils/validationSchema.js");
 
-app.set("views", path.join(__dirname, "views")); //used to join the path of the views
-app.set("view engine", "ejs"); //To process the ejs files into html files
-app.engine("ejs", ejsMate); //<%include & layouts %> can be used because of this "ejsmate"
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.engine("ejs", ejsMate);
 
-// app.use are the middlewares used to execute in any api path
-app.use(express.static(path.join(__dirname, "public"))); //used to serve the static files which are in the public folder
-app.use(express.urlencoded({ extended: true })); // Parse the urlencoded to the readable format in the req.body {into object format}
-app.use(express.json()); // used to parse the json format to the object format
-app.use(methodOverride("_method")); //overrides any method to any other method
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(methodOverride("_method"));
 
-// Validates the server side error and throws to the error handling middleware
 const ListingValidation = (req, res, next) => {
 	let { error } = schema.validate(req.body);
 	if (error) {
@@ -33,7 +28,6 @@ const ListingValidation = (req, res, next) => {
 	}
 };
 
-//Establishes the DataBase connection
 main()
 	.then(() => {
 		console.log("Mongo DB Connection Successful");
@@ -71,7 +65,7 @@ app.get(
 	})
 );
 
-//new post route //next is not required because we have declared that in the AsyncWrap.js file
+//new post route
 app.post(
 	"/listings/new",
 	ListingValidation,
@@ -112,12 +106,10 @@ app.delete(
 	})
 );
 
-// This is used to handle the unknown api requests
 app.all("*", (req, res, next) => {
 	next(new ExpressError(404, "Page Not Found!"));
 });
 
-//to handle the error we use this middleware
 app.use((err, req, res, next) => {
 	let { statusCode = 500, message = "Something Went Wrong!" } = err;
 	res.status(statusCode).render("ErrorPage/Error.ejs", { message, statusCode });

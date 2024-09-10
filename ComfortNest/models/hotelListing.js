@@ -9,22 +9,15 @@ const hotelInfoListingSchema = new Schema({
 	},
 	description: String,
 	image: {
-		filename: String, // Two different fields can be entered into the single attribute but it has to be validated;
-		url: {
-			type: String,
-			default:
-				"https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-			//set (v) check only for the empty condition
-			set: (v) =>
-				v === ""
-					? "https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-					: v,
-			//this is to check the image link or any image is uploded or not , if not then a default link is uploaded;
-		},
-		title: {
-			type: String,
-			default: "listingImage",
-		},
+		type: String,
+		default:
+			"https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+		//set (v) check only for the empty condition
+		set: (v) =>
+			v === ""
+				? "https://images.unsplash.com/photo-1549294413-26f195200c16?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				: v,
+		//this is to check the image link or any image is uploded or not , if not then a default link is uploaded;
 	},
 	price: Number,
 	location: String,

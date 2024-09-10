@@ -8,7 +8,7 @@
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {
-	transform: translateY(-0.75rem) scale(1.02);
+	transform: translateY(-0.75rem) scale(1.075);
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
 }
 .card-img-top {

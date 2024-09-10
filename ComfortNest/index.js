@@ -7,6 +7,7 @@ const hotelInfo = require("./models/hotelListing");
 const ejsMate = require("ejs-mate");
 const AsyncWrap = require("./utils/AsyncWrap");
 const ExpressError = require("./utils/ExpressError.js");
+const { schema } = require("./utils/validationSchema.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -16,6 +17,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+
+const ListingValidation = (req, res, next) => {
+	let { error } = schema.validate(req.body);
+	if (error) {
+		let errMsg = error.details.map((el) => el.message).join(",");
+		throw new ExpressError(400, error);
+	} else {
+		next();
+	}
+};
 
 main()
 	.then(() => {
@@ -57,10 +68,8 @@ app.get(
 //new post route //next is not required because we have declared that in the ExpreesError
 app.post(
 	"/listings/new",
+	ListingValidation,
 	AsyncWrap(async (req, res) => {
-		if (!req.body.Listing) {
-			throw new ExpressError(400, "Please provide valid data");
-		}
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		await newHotelInfo.save();
 		res.redirect("/listings");
@@ -79,6 +88,7 @@ app.get(
 
 app.put(
 	"/listings/:id",
+	ListingValidation,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
@@ -92,7 +102,6 @@ app.delete(
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		let deletedListing = await hotelInfo.findByIdAndDelete(id);
-		// console.log(deletedListing);
 		res.redirect(`/listings/`);
 	})
 );

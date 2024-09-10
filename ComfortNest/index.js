@@ -1,23 +1,28 @@
+//Imported from npm
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const path = require("path");
-const methodOverride = require("method-override");
-const hotelInfo = require("./models/hotelListing");
 const ejsMate = require("ejs-mate");
+const methodOverride = require("method-override");
+
+//Custom Functions
+const hotelInfo = require("./models/hotelListing");
 const AsyncWrap = require("./utils/AsyncWrap");
 const ExpressError = require("./utils/ExpressError.js");
 const { schema } = require("./utils/validationSchema.js");
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.engine("ejs", ejsMate);
+app.set("views", path.join(__dirname, "views")); //used to join the path of the views
+app.set("view engine", "ejs"); //To process the ejs files into html files
+app.engine("ejs", ejsMate); //<%include & layouts %> can be used because of this "ejsmate"
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(methodOverride("_method"));
+// app.use are the middlewares used to execute in any api path
+app.use(express.static(path.join(__dirname, "public"))); //used to serve the static files which are in the public folder
+app.use(express.urlencoded({ extended: true })); // Parse the urlencoded to the readable format in the req.body {into object format}
+app.use(express.json()); // used to parse the json format to the object format
+app.use(methodOverride("_method")); //overrides any method to any other method
 
+// Validates the server side error and throws to the error handling middleware
 const ListingValidation = (req, res, next) => {
 	let { error } = schema.validate(req.body);
 	if (error) {
@@ -28,6 +33,7 @@ const ListingValidation = (req, res, next) => {
 	}
 };
 
+//Establishes the DataBase connection
 main()
 	.then(() => {
 		console.log("Mongo DB Connection Successful");
@@ -65,7 +71,7 @@ app.get(
 	})
 );
 
-//new post route //next is not required because we have declared that in the ExpreesError
+//new post route //next is not required because we have declared that in the AsyncWrap.js file
 app.post(
 	"/listings/new",
 	ListingValidation,
@@ -120,22 +126,3 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
 	console.log("ComfortNest Listening {Port: 8080}");
 });
-
-// //This is to upload a test element into the data base
-// app.get("/testListing", async (req, res) => {
-// 	let sampleListing = new hotelInfo({
-// 		title: "New villa",
-// 		description: "Latest villa in the hole world",
-// 		price: 1200,
-// 		country: "India",
-// 		location: "Mangaluru",
-// 	});
-// 	await sampleListing.save();
-// 	res.send("sucessful savce");
-// });
-
-// The below code is to use the header and footer in ejs mate
-// <% layout('boilerplate') -%>
-// <% block('head').append('<link type="text/css" href="/foo.css">') %>
-// <h1>I am the template</h1>
-// <% block('footer').append('<script src="/bar.js"></script>') %>

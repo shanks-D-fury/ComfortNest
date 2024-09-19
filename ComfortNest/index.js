@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const hotelInfo = require("./models/hotelListing");
 const AsyncWrap = require("./utils/AsyncWrap");
 const ExpressError = require("./utils/ExpressError.js");
-const { schema } = require("./utils/validationSchema.js");
+const { listingSchema, reviewSchema } = require("./utils/validationSchema.js");
 const Review = require("./models/reviews.js");
 
 app.set("views", path.join(__dirname, "views"));
@@ -20,7 +20,17 @@ app.use(express.json());
 app.use(methodOverride("_method"));
 
 const ListingValidation = (req, res, next) => {
-	let { error } = schema.validate(req.body);
+	let { error } = listingSchema.validate(req.body);
+	if (error) {
+		let errMsg = error.details.map((el) => el.message).join(",");
+		throw new ExpressError(400, error);
+	} else {
+		next();
+	}
+};
+
+const ReviewValidation = (req, res, next) => {
+	let { error } = reviewSchema.validate(req.body);
 	if (error) {
 		let errMsg = error.details.map((el) => el.message).join(",");
 		throw new ExpressError(400, error);
@@ -111,6 +121,7 @@ app.delete(
 //Post route
 app.post(
 	"/listings/:id/review",
+	ReviewValidation,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		let listing = await hotelInfo.findById(id);

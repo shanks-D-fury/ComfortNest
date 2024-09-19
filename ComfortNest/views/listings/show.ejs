@@ -36,7 +36,12 @@
 		<div class="col-8 offset-3 mb-3">
 			<hr />
 			<h3>Reviews</h3>
-			<form action="/listings/<%=listing._id  %>/review" method="post">
+			<form
+				action="/listings/<%=listing._id  %>/review"
+				method="post"
+				novalidate
+				class="needs-validation"
+			>
 				<div class="mb-3">
 					<label for="rating" class="form-label">Rating</label><br />
 					<input
@@ -57,7 +62,9 @@
 						rows="3"
 						cols="30"
 						class="form-control"
+						required
 					></textarea>
+					<div class="invalid-feedback">Please enter valid comment</div>
 				</div>
 				<button type="submit" class="btn btn-outline-dark mb-3">submit</button>
 			</form>

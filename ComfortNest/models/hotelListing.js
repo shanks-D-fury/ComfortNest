@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { type } = require("os");
 const Schema = mongoose.Schema;
+const Review = require("./reviews.js");
+const reviews = require("./reviews.js");
 
 const hotelInfoListingSchema = new Schema({
 	title: {
@@ -22,6 +24,10 @@ const hotelInfoListingSchema = new Schema({
 	price: Number,
 	location: String,
 	country: String,
+	reviews: {
+		type: Schema.Types.ObjectId,
+		ref: "Reviews",
+	},
 });
 
 //this below line is to register the hotelInfo as a collection in the data base

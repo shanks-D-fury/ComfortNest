@@ -8,6 +8,7 @@ const hotelInfo = require("./models/hotelListing");
 const AsyncWrap = require("./utils/AsyncWrap");
 const ExpressError = require("./utils/ExpressError.js");
 const { schema } = require("./utils/validationSchema.js");
+const Review = require("./models/reviews.js");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -103,6 +104,24 @@ app.delete(
 		let { id } = req.params;
 		let deletedListing = await hotelInfo.findByIdAndDelete(id);
 		res.redirect(`/listings/`);
+	})
+);
+
+//Reviews route
+//Post route
+app.post(
+	"/listings/:id/review",
+	AsyncWrap(async (req, res) => {
+		let { id } = req.params;
+		let listing = await hotelInfo.findById(id);
+		let newReview = new Review(req.body.Review);
+
+		listing.reviews.push(newReview);
+
+		await newReview.save();
+		await listing.save();
+		console.log("New reviews saved ");
+		res.redirect(`/listings/${id}`);
 	})
 );
 

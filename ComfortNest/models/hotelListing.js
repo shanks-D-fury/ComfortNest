@@ -24,10 +24,12 @@ const hotelInfoListingSchema = new Schema({
 	price: Number,
 	location: String,
 	country: String,
-	reviews: {
-		type: Schema.Types.ObjectId,
-		ref: "Reviews",
-	},
+	reviews: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Review",
+		},
+	],
 });
 
 //this below line is to register the hotelInfo as a collection in the data base

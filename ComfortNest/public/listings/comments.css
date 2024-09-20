@@ -1,0 +1,12 @@
+.review-trash-symbol {
+	font-size: smaller;
+}
+.btn-danger {
+	padding: 0.3rem 0.4rem;
+	border-radius: 0.2rem;
+}
+.review-stars-trash {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

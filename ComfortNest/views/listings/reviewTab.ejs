@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/listings/reviewTab.css" />
+<div class="col-6 offset-1 mb-3">
+	<hr />
+	<form
+		action="/listings/<%=listing._id  %>/review"
+		method="post"
+		novalidate
+		class="needs-validation"
+	>
+		<div class="mb-3 rating-bar">
+			<label for="rating" class="form-label rating-form-label">Rating </label>
+			<b> <span id="currentRating">3</span></b>
+			<input
+				type="range"
+				min="1"
+				max="5"
+				id="rating"
+				step="0.5"
+				name="Review[rating]"
+				class="form-range"
+			/>
+		</div>
+		<div class="mb-3">
+			<label for="comment" class="form-label">Comment</label><br />
+			<textarea
+				name="Review[comment]"
+				id="comment"
+				rows="3"
+				cols="30"
+				class="form-control"
+				required
+			></textarea>
+			<div class="invalid-feedback">Please enter valid comment</div>
+		</div>
+		<button type="submit" class="btn btn-dark">submit</button>
+	</form>
+	<script>
+		// Get the range input element and the display span
+		const ratingSlider = document.getElementById("rating");
+		const currentRatingDisplay = document.getElementById("currentRating");
+
+		// Update the display when the slider is moved
+		ratingSlider.addEventListener("input", function () {
+			currentRatingDisplay.textContent = ratingSlider.value;
+		});
+	</script>
+	<hr />
+</div>

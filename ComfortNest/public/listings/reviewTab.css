@@ -1,6 +1,10 @@
 .rating-form-label {
 	display: inline-block;
 }
+.rating-form-label,
+.comment-form-label {
+	font-weight: 600;
+}
 #rating {
 	width: 50%;
 	color: #ff385c;
@@ -29,4 +33,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 .review-stars-trash {
 	display: flex;
 	justify-content: space-between;
+}
+
+.form-control {
+	border: #21252976 solid 0.05rem;
 }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { type } = require("os");
 const Schema = mongoose.Schema;
 const Review = require("./reviews.js");
-const reviews = require("./reviews.js");
+const { listingSchema } = require("../utils/validationSchema.js");
 
 const hotelInfoListingSchema = new Schema({
 	title: {
@@ -31,6 +31,17 @@ const hotelInfoListingSchema = new Schema({
 		},
 	],
 });
+
+hotelInfoListingSchema.post(
+	"findOneAndDelete",
+	async (hotelInfoListingSchema) => {
+		if (hotelInfoListingSchema) {
+			await Review.deleteMany({
+				_id: { $in: hotelInfoListingSchema.reviews },
+			});
+		}
+	}
+);
 
 //this below line is to register the hotelInfo as a collection in the data base
 const hotelInfo = mongoose.model("hotelInfo", hotelInfoListingSchema);

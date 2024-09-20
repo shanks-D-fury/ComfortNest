@@ -4,7 +4,7 @@
 	<div class="row row-coustom">
 		<div class="col-8 offset-3">
 			<h4><b class="show-non-italic"><%= listing.title%></b> <br /></h4>
-			<div class="card col-8">
+			<div class="card col-8 show-card">
 				<img
 					src="<%= listing.image%>"
 					class="card-img-top"
@@ -33,17 +33,19 @@
 			</div>
 		</div>
 
-		<div class="col-8 offset-3 mb-3">
+		<div class="col-6 offset-1 mb-3">
 			<hr />
-			<h3>Reviews</h3>
 			<form
 				action="/listings/<%=listing._id  %>/review"
 				method="post"
 				novalidate
 				class="needs-validation"
 			>
-				<div class="mb-3">
-					<label for="rating" class="form-label">Rating</label><br />
+				<div class="mb-3 rating-bar">
+					<label for="rating" class="form-label rating-form-label"
+						>Rating
+					</label>
+					<b> <span id="currentRating">3</span></b>
 					<input
 						type="range"
 						min="1"
@@ -66,8 +68,47 @@
 					></textarea>
 					<div class="invalid-feedback">Please enter valid comment</div>
 				</div>
-				<button type="submit" class="btn btn-outline-dark mb-3">submit</button>
+				<button type="submit" class="btn btn-dark">submit</button>
 			</form>
+			<script>
+				// Get the range input element and the display span
+				const ratingSlider = document.getElementById("rating");
+				const currentRatingDisplay = document.getElementById("currentRating");
+
+				// Update the display when the slider is moved
+				ratingSlider.addEventListener("input", function () {
+					currentRatingDisplay.textContent = ratingSlider.value;
+				});
+			</script>
+			<hr />
+		</div>
+		<div class="col-7 offset-2 mb-3">
+			<h3>Reviews</h3>
+			<div class="row">
+				<% for(review of listing.reviews){ %>
+				<div class="card review-card col-5 ms-2 mb-2">
+					<div class="card-body">
+						<h6 class="card-title"><%= listing.title%></h6>
+						<p class="card-text"><%= review.comment %></p>
+						<div class="review-stars-trash">
+							<span class="card-text">
+								<i class="fa-regular fa-star"></i><%= review.rating %>
+							</span>
+							<form
+								action="/listings/<%= listing._id %>/review/<%= review._id %>?_method=DELETE"
+								method="post"
+							>
+								<button type="submit" class="btn btn-danger">
+									<span class="review-trash-symbol"
+										><i class="fa-solid fa-trash"></i
+									></span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<% } %>
+			</div>
 		</div>
 	</div>
 </body>

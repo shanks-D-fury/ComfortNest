@@ -71,7 +71,7 @@ app.get(
 	"/listings/:id",
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
-		const listing = await hotelInfo.findById(id);
+		const listing = await hotelInfo.findById(id).populate("reviews");
 		res.render("listings/show.ejs", { listing });
 	})
 );
@@ -118,7 +118,7 @@ app.delete(
 );
 
 //Reviews route
-//Post route
+//Post review route
 app.post(
 	"/listings/:id/review",
 	ReviewValidation,
@@ -136,6 +136,17 @@ app.post(
 	})
 );
 
+//delete review route
+app.delete(
+	"/listings/:id/review/:reviewId",
+	AsyncWrap(async (req, res) => {
+		let { id, reviewId } = req.params;
+		await Review.findByIdAndDelete(reviewId);
+		await hotelInfo.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+
+		res.redirect(`/listings/${id}`);
+	})
+);
 app.all("*", (req, res, next) => {
 	next(new ExpressError(404, "Page Not Found!"));
 });

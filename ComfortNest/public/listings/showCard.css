@@ -1,16 +1,10 @@
 .card-img-top {
 	border-radius: 0.5rem;
-	width: 50%; /* Full width of container */
+	width: 70%; /* Full width of container */
 	height: auto;
 	object-fit: fill;
 }
-@media (min-width: 650px) {
-	.card-img-top {
-		/* width: 20vw;
-		height: 30vh; */
-		aspect-ratio: 1/1;
-	}
-}
+
 .show-card {
 	border: none;
 }

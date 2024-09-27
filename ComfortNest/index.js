@@ -4,8 +4,9 @@ const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
+const listings = require("./routes/listings.js");
 const hotelInfo = require("./models/hotelListing");
-const AsyncWrap = require("./utils/AsyncWrap");
+const AsyncWrap = require("./utils/AsyncWrap.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./utils/validationSchema.js");
 const Review = require("./models/reviews.js");
@@ -18,16 +19,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
-
-const ListingValidation = (req, res, next) => {
-	let { error } = listingSchema.validate(req.body);
-	if (error) {
-		let errMsg = error.details.map((el) => el.message).join(",");
-		throw new ExpressError(400, error);
-	} else {
-		next();
-	}
-};
 
 const ReviewValidation = (req, res, next) => {
 	let { error } = reviewSchema.validate(req.body);
@@ -48,74 +39,13 @@ main()
 async function main() {
 	await mongoose.connect("mongodb://127.0.0.1:27017/ComfortNest");
 }
+
+//home route
 app.get("/", (req, res) => {
 	res.send("working");
 });
 
-//Index route
-app.get(
-	"/listings",
-	AsyncWrap(async (req, res) => {
-		const featchedInfo = await hotelInfo.find();
-		res.render("listings/index.ejs", { featchedInfo });
-	})
-);
-
-//new route
-app.get("/listings/new", (req, res) => {
-	res.render("listings/new.ejs");
-});
-
-//show route
-app.get(
-	"/listings/:id",
-	AsyncWrap(async (req, res) => {
-		let { id } = req.params;
-		const listing = await hotelInfo.findById(id).populate("reviews");
-		res.render("listings/show.ejs", { listing });
-	})
-);
-
-//new post route
-app.post(
-	"/listings/new",
-	ListingValidation,
-	AsyncWrap(async (req, res) => {
-		const newHotelInfo = new hotelInfo(req.body.Listing);
-		await newHotelInfo.save();
-		res.redirect("/listings");
-	})
-);
-
-//edit route
-app.get(
-	"/listings/:id/edit",
-	AsyncWrap(async (req, res) => {
-		let { id } = req.params;
-		const Listing = await hotelInfo.findById(id);
-		res.render("listings/edit.ejs", { Listing });
-	})
-);
-
-app.put(
-	"/listings/:id",
-	ListingValidation,
-	AsyncWrap(async (req, res) => {
-		let { id } = req.params;
-		await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
-		res.redirect(`/listings/${id}`);
-	})
-);
-
-//Delete route
-app.delete(
-	"/listings/:id",
-	AsyncWrap(async (req, res) => {
-		let { id } = req.params;
-		let deletedListing = await hotelInfo.findByIdAndDelete(id);
-		res.redirect(`/listings/`);
-	})
-);
+app.use("/listings", listings);
 
 //Reviews route
 //Post review route
@@ -131,7 +61,7 @@ app.post(
 
 		await newReview.save();
 		await listing.save();
-		console.log("New reviews saved ");
+		// console.log("New reviews saved ");
 		res.redirect(`/listings/${id}`);
 	})
 );

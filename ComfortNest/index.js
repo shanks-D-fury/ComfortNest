@@ -9,6 +9,13 @@ const ExpressError = require("./utils/ExpressError.js");
 const listings = require("./routes/listings.js");
 const reviews = require("./routes/reviews.js");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const flash = require("connect-flash");
+const sessionOptions = {
+	secret: "supersecretkey",
+	resave: false,
+	saveUninitialized: true,
+};
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -19,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(cookieParser());
+app.use(session(sessionOptions));
+app.use(flash());
 
 main()
 	.then(() => {

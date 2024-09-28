@@ -49,6 +49,11 @@ app.get("/", (req, res) => {
 	res.send("working");
 });
 
+app.use((req, res, next) => {
+	res.locals.success = req.flash("success");
+	next();
+});
+
 // routes for listing and review
 app.use("/listings", listings);
 app.use("/listings/:id/review", reviews);

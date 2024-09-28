@@ -46,6 +46,7 @@ router.post(
 	AsyncWrap(async (req, res) => {
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		await newHotelInfo.save();
+		req.flash("success", "New Listing Succesfully Created");
 		res.redirect("/listings");
 	})
 );

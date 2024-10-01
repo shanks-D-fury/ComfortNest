@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const localStrategy = require("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/users.js");
 
 const ExpressError = require("./utils/ExpressError.js");
@@ -36,6 +36,12 @@ app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser()); // these two lines are used to store the user in the session and remove respectively
+passport.deserializeUser(User.deserializeUser());
 
 main()
 	.then(() => {
@@ -56,6 +62,15 @@ app.use((req, res, next) => {
 	res.locals.success = req.flash("success");
 	res.locals.error = req.flash("error");
 	next();
+});
+
+app.get("/demouser", async (req, res) => {
+	let fakeUser = new User({
+		email: "shanks@gmail.com",
+		username: "shanks9190",
+	});
+	let registeredUser = await User.register(fakeUser, "hishanks1919");
+	res.send(registeredUser);
 });
 
 // routes for listing and review

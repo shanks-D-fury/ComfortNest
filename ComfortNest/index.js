@@ -4,13 +4,16 @@ const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const ExpressError = require("./utils/ExpressError.js");
-
-const listings = require("./routes/listings.js");
-const reviews = require("./routes/reviews.js");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const User = require("./models/users.js");
+
+const ExpressError = require("./utils/ExpressError.js");
+const listings = require("./routes/listings.js");
+const reviews = require("./routes/reviews.js");
 const sessionOptions = {
 	secret: "supersecretkey",
 	resave: false,

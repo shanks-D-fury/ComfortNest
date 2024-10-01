@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/users.js");
 const AsyncWrap = require("../utils/AsyncWrap");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../utils/loggedInMw.js");
 
 router.get("/signup", async (req, res) => {
 	res.render("users/signup.ejs");
@@ -36,14 +37,17 @@ router.get("/login", async (req, res) => {
 
 router.post(
 	"/login",
+	saveRedirectUrl,
 	passport.authenticate("local", {
 		failureRedirect: "/login",
 		failureFlash: true,
 	}),
 	async (req, res) => {
 		let { username } = req.body;
+		let redirectUrl = res.locals.redirectUrl || "/listings";
+		// the above line is written because if we login from the all listings page then the locals will be empty because the is loggedIn is not triggred so the session doesnt have the redirectUrl or the req.originalUrl , so the locals will be undefined and the error will be "page not found"
 		req.flash("success", `Hello ${username}, Welcome Back To ComfortNest!`);
-		res.redirect("/listings");
+		res.redirect(redirectUrl);
 	}
 );
 

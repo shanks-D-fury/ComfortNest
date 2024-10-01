@@ -1,10 +1,22 @@
 .signUp-form {
-	width: 35%;
+	height: 23rem;
+	width: 50vw;
 	border: 1px solid black;
 	border-radius: 1rem;
-	padding: 2%;
+	padding: 1rem 1rem;
 	margin-top: 1rem;
+	position: relative;
+	left: -5%;
+}
+@media (min-width: 650px) {
+	.signUp-form {
+		width: 30vw;
+		left: 0;
+	}
 }
 .form-label {
 	font-weight: 500;
+}
+.form-control {
+	border: 1px solid black;
 }

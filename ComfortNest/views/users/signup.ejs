@@ -1,0 +1,41 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<link rel="stylesheet" href="/users/signup.css" />
+<div class="row">
+	<div class="col-4 offset-4 signUp-form">
+		<h3>SignUp On ComfortNest</h3>
+		<form action="/signup" method="post" novalidate class="needs-validation">
+			<div class="mb-2">
+				<label for="title" class="form-label">Username</label>
+				<input
+					name="username"
+					id="username"
+					type="text"
+					class="form-control"
+					required
+				/>
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="mb-2">
+				<label for="title" class="form-label mb-2">Email</label>
+				<input
+					name="email"
+					type="email"
+					id="email"
+					class="form-control"
+					required
+				/>
+			</div>
+			<div class="mb-2">
+				<label for="title" class="form-label">Password</label>
+				<input
+					name="password"
+					type="password"
+					id="password"
+					class="form-control mb-3"
+					required
+				/>
+			</div>
+			<button class="btn btn-dark">Submit</button>
+		</form>
+	</div>
+</div>

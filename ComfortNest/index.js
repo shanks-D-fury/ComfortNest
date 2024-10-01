@@ -12,8 +12,10 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/users.js");
 
 const ExpressError = require("./utils/ExpressError.js");
-const listings = require("./routes/listings.js");
-const reviews = require("./routes/reviews.js");
+const listingsRouter = require("./routes/listings.js");
+const reviewsRouter = require("./routes/reviews.js");
+const userRouter = require("./routes/users.js");
+
 const sessionOptions = {
 	secret: "supersecretkey",
 	resave: false,
@@ -74,8 +76,9 @@ app.get("/demouser", async (req, res) => {
 });
 
 // routes for listing and review
-app.use("/listings", listings);
-app.use("/listings/:id/review", reviews);
+app.use("/listings", listingsRouter);
+app.use("/listings/:id/review", reviewsRouter);
+app.use("/", userRouter);
 
 //error handlings
 app.all("*", (req, res, next) => {

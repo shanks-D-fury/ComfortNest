@@ -1,0 +1,10 @@
+.signUp-form {
+	width: 35%;
+	border: 1px solid black;
+	border-radius: 1rem;
+	padding: 2%;
+	margin-top: 1rem;
+}
+.form-label {
+	font-weight: 500;
+}

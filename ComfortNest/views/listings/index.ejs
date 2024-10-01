@@ -1,12 +1,9 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <link rel="stylesheet" href="/listings/cards.css" />
 <body>
-	<!-- <form action="/listings/new" method="get">
-		<button>Create New Hotel Info</button>
-	</form> -->
 	<div class="row row-col-lg-4">
 		<% for(let listing of featchedInfo) {%>
-		<div class="card" style="width: 23rem">
+		<div class="card" style="width: 21rem">
 			<a href="/listings/<%= listing._id%>" id="normalTitleLink">
 				<img
 					src="<%=listing.image%>"

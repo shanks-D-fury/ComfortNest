@@ -1,0 +1,10 @@
+.alert-dismissible {
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.btn-close {
+	padding: 0.5rem !important;
+	position: relative;
+}

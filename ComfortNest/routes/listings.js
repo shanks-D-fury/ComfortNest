@@ -35,6 +35,10 @@ router.get(
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		const listing = await hotelInfo.findById(id).populate("reviews");
+		if (!listing) {
+			req.flash("error", "Listing you requested Does Not exist!");
+			res.redirect("/listings");
+		}
 		res.render("listings/show.ejs", { listing });
 	})
 );
@@ -57,6 +61,10 @@ router.get(
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		const Listing = await hotelInfo.findById(id);
+		if (!Listing) {
+			req.flash("error", "Listing you requested Does Not exist!");
+			res.redirect("/listings");
+		}
 		res.render("listings/edit.ejs", { Listing });
 	})
 );

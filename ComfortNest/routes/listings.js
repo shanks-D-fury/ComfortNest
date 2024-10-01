@@ -4,6 +4,7 @@ const hotelInfo = require("../models/hotelListing");
 const AsyncWrap = require("../utils/AsyncWrap.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("../utils/validationSchema.js");
+const { isLoggedIn } = require("../utils/loggedInMw.js");
 
 const ListingValidation = (req, res, next) => {
 	let { error } = listingSchema.validate(req.body);
@@ -25,7 +26,7 @@ router.get(
 );
 
 //new route
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
 	res.render("listings/new.ejs");
 });
 
@@ -37,7 +38,7 @@ router.get(
 		const listing = await hotelInfo.findById(id).populate("reviews");
 		if (!listing) {
 			req.flash("error", "Listing you requested Does Not exist!");
-			res.redirect("/listings");
+			return res.redirect("/listings");
 		}
 		res.render("listings/show.ejs", { listing });
 	})
@@ -47,6 +48,7 @@ router.get(
 router.post(
 	"/new",
 	ListingValidation,
+	isLoggedIn,
 	AsyncWrap(async (req, res) => {
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		await newHotelInfo.save();
@@ -58,12 +60,13 @@ router.post(
 //edit route
 router.get(
 	"/:id/edit",
+	isLoggedIn,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		const Listing = await hotelInfo.findById(id);
 		if (!Listing) {
 			req.flash("error", "Listing you requested Does Not exist!");
-			res.redirect("/listings");
+			return res.redirect("/listings");
 		}
 		res.render("listings/edit.ejs", { Listing });
 	})
@@ -83,6 +86,7 @@ router.put(
 //Delete route
 router.delete(
 	"/:id",
+	isLoggedIn,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		let deletedListing = await hotelInfo.findByIdAndDelete(id);

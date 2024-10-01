@@ -29,7 +29,7 @@ router.post(
 
 		await newReview.save();
 		await listing.save();
-		// console.log("New reviews saved ");
+		req.flash("success", "New Review Succesfully Created");
 		res.redirect(`/listings/${id}`);
 	})
 );
@@ -41,7 +41,7 @@ router.delete(
 		let { id, reviewId } = req.params;
 		await Review.findByIdAndDelete(reviewId);
 		await hotelInfo.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-
+		req.flash("success", "Review Deleted Succesfully");
 		res.redirect(`/listings/${id}`);
 	})
 );

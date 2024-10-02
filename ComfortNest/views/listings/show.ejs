@@ -26,6 +26,8 @@
 					</div>
 				</div>
 			</div>
+			<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
+			<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
 			<div class="col col-btns">
 				<a href="/listings/<%=listing._id  %>/edit" class="btn btn-dark"
 					>Edit</a
@@ -38,6 +40,7 @@
 					<button class="btn btn-danger">DELETE</button>
 				</form>
 			</div>
+			<% } %>
 		</div>
 		<%- include("../listings/reviewTab.ejs") %> <%-
 		include("../listings/comments.ejs") %>

@@ -4,17 +4,11 @@ const hotelInfo = require("../models/hotelListing");
 const AsyncWrap = require("../utils/AsyncWrap.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("../utils/validationSchema.js");
-const { isLoggedIn } = require("../utils/Middlewares.js");
-
-const ListingValidation = (req, res, next) => {
-	let { error } = listingSchema.validate(req.body);
-	if (error) {
-		let errMsg = error.details.map((el) => el.message).join(",");
-		throw new ExpressError(400, error);
-	} else {
-		next();
-	}
-};
+const {
+	isLoggedIn,
+	checkIsOwner,
+	ListingValidation,
+} = require("../utils/Middlewares.js");
 
 //Index route
 router.get(
@@ -79,6 +73,7 @@ router.get(
 router.put(
 	"/:id",
 	isLoggedIn,
+	checkIsOwner,
 	ListingValidation,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
@@ -92,6 +87,7 @@ router.put(
 router.delete(
 	"/:id",
 	isLoggedIn,
+	checkIsOwner,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		let deletedListing = await hotelInfo.findByIdAndDelete(id);

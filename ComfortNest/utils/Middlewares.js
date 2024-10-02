@@ -1,4 +1,6 @@
 const hotelInfo = require("../models/hotelListing");
+const ExpressError = require("./ExpressError.js");
+const { reviewSchema, listingSchema } = require("./validationSchema.js");
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
@@ -28,6 +30,16 @@ module.exports.checkIsOwner = async (req, res, next) => {
 
 module.exports.ListingValidation = (req, res, next) => {
 	let { error } = listingSchema.validate(req.body);
+	if (error) {
+		let errMsg = error.details.map((el) => el.message).join(",");
+		throw new ExpressError(400, error);
+	} else {
+		next();
+	}
+};
+
+module.exports.ReviewValidation = (req, res, next) => {
+	let { error } = reviewSchema.validate(req.body);
 	if (error) {
 		let errMsg = error.details.map((el) => el.message).join(",");
 		throw new ExpressError(400, error);

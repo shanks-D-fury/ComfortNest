@@ -3,19 +3,7 @@ const router = express.Router({ mergeParams: true });
 const hotelInfo = require("../models/hotelListing");
 const Review = require("../models/reviews.js");
 const AsyncWrap = require("../utils/AsyncWrap.js");
-const ExpressError = require("../utils/ExpressError.js");
-const { reviewSchema } = require("../utils/validationSchema.js");
-
-const ReviewValidation = (req, res, next) => {
-	let { error } = reviewSchema.validate(req.body);
-	if (error) {
-		let errMsg = error.details.map((el) => el.message).join(",");
-		throw new ExpressError(400, error);
-	} else {
-		next();
-	}
-};
-
+const { ReviewValidation } = require("../utils/Middlewares.js");
 //Post review route
 router.post(
 	"/",

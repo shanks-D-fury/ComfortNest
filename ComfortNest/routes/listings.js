@@ -4,7 +4,7 @@ const hotelInfo = require("../models/hotelListing");
 const AsyncWrap = require("../utils/AsyncWrap.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("../utils/validationSchema.js");
-const { isLoggedIn } = require("../utils/loggedInMw.js");
+const { isLoggedIn } = require("../utils/Middlewares.js");
 
 const ListingValidation = (req, res, next) => {
 	let { error } = listingSchema.validate(req.body);
@@ -50,8 +50,8 @@ router.get(
 //new post route
 router.post(
 	"/new",
-	ListingValidation,
 	isLoggedIn,
+	ListingValidation,
 	AsyncWrap(async (req, res) => {
 		const newHotelInfo = new hotelInfo(req.body.Listing);
 		newHotelInfo.owner = req.user._id; // this line is to add the owner details to the new listing
@@ -78,6 +78,7 @@ router.get(
 
 router.put(
 	"/:id",
+	isLoggedIn,
 	ListingValidation,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;

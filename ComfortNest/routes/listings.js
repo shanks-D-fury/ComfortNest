@@ -6,7 +6,7 @@ const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("../utils/validationSchema.js");
 const {
 	isLoggedIn,
-	checkIsOwner,
+	checkOwner,
 	ListingValidation,
 } = require("../utils/Middlewares.js");
 
@@ -31,8 +31,9 @@ router.get(
 		let { id } = req.params;
 		const listing = await hotelInfo
 			.findById(id)
-			.populate("reviews")
+			.populate({ path: "reviews", populate: { path: "author" } })
 			.populate("owner");
+		// The method populate is used because when an object is present in the db their reference is , to avoid that we use the populate method
 		if (!listing) {
 			req.flash("error", "Listing you requested Does Not exist!");
 			return res.redirect("/listings");
@@ -59,6 +60,7 @@ router.post(
 router.get(
 	"/:id/edit",
 	isLoggedIn,
+	checkOwner,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		const Listing = await hotelInfo.findById(id);
@@ -73,7 +75,7 @@ router.get(
 router.put(
 	"/:id",
 	isLoggedIn,
-	checkIsOwner,
+	checkOwner,
 	ListingValidation,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
@@ -87,7 +89,7 @@ router.put(
 router.delete(
 	"/:id",
 	isLoggedIn,
-	checkIsOwner,
+	checkOwner,
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
 		let deletedListing = await hotelInfo.findByIdAndDelete(id);

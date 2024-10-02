@@ -61,4 +61,36 @@ router.get("/logout", (req, res, next) => {
 	});
 });
 
+//demo user link
+router.get("/demouser/night_fury", async (req, res) => {
+	try {
+		let fakeUser = new User({
+			email: "shanks@gmail.com",
+			username: "night_fury",
+		});
+		let night_fury = await User.register(fakeUser, "shanks@1468");
+		req.login(night_fury, (err) => {
+			if (err) {
+				return next(err);
+			}
+			req.flash("success", "Demo user {night_fury} added!");
+			res.redirect("/listings");
+		});
+	} catch (err) {
+		req.flash("error", err.message);
+		res.redirect("/signup");
+	}
+});
+
+router.get("/delete_demouser/night_fury", async (req, res) => {
+	try {
+		await User.findOneAndDelete({ username: "night_fury" });
+		req.flash("success", "Demo user { night_fury} deleted! ");
+		res.redirect("/listings");
+	} catch (err) {
+		req.flash("error", "Something went wrong!");
+		res.redirect("/listings");
+	}
+});
+
 module.exports = router;

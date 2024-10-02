@@ -1,4 +1,5 @@
 const hotelInfo = require("../models/hotelListing");
+const Review = require("../models/reviews.js");
 const ExpressError = require("./ExpressError.js");
 const { reviewSchema, listingSchema } = require("./validationSchema.js");
 
@@ -18,7 +19,7 @@ module.exports.saveRedirectUrl = (req, res, next) => {
 	next();
 };
 
-module.exports.checkIsOwner = async (req, res, next) => {
+module.exports.checkOwner = async (req, res, next) => {
 	let { id } = req.params;
 	let listing = await hotelInfo.findById(id);
 	if (!res.locals.currentUser._id.equals(listing.owner._id)) {
@@ -46,4 +47,14 @@ module.exports.ReviewValidation = (req, res, next) => {
 	} else {
 		next();
 	}
+};
+
+module.exports.checkAuthor = async (req, res, next) => {
+	let { id, reviewId } = req.params;
+	let review = await Review.findById(reviewId);
+	if (!res.locals.currentUser._id.equals(review.author)) {
+		req.flash("error", "You are not the Author of this review!");
+		return res.redirect(`/listings/${id}`);
+	}
+	next();
 };

@@ -35,7 +35,10 @@ router.get(
 	"/:id",
 	AsyncWrap(async (req, res) => {
 		let { id } = req.params;
-		const listing = await hotelInfo.findById(id).populate("reviews");
+		const listing = await hotelInfo
+			.findById(id)
+			.populate("reviews")
+			.populate("owner");
 		if (!listing) {
 			req.flash("error", "Listing you requested Does Not exist!");
 			return res.redirect("/listings");
@@ -51,6 +54,7 @@ router.post(
 	isLoggedIn,
 	AsyncWrap(async (req, res) => {
 		const newHotelInfo = new hotelInfo(req.body.Listing);
+		newHotelInfo.owner = req.user._id; // this line is to add the owner details to the new listing
 		await newHotelInfo.save();
 		req.flash("success", "New Listing Succesfully Created");
 		res.redirect("/listings");

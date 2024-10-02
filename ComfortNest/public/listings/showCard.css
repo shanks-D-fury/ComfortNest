@@ -28,3 +28,6 @@
 .show-non-italic {
 	font-style: normal;
 }
+.card-text {
+	margin-bottom: 1%;
+}

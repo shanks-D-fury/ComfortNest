@@ -30,6 +30,10 @@ const hotelInfoListingSchema = new Schema({
 			ref: "Review",
 		},
 	],
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+	}, // owner for the authorization is added to the listing
 });
 
 hotelInfoListingSchema.post(

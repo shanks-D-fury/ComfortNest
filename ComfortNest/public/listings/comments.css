@@ -10,3 +10,16 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.fa-star {
+	color: #f5bd23;
+}
+.rating-star-text {
+	font-size: larger;
+}
+.card-date-text {
+	font-size: 0.75rem;
+	line-height: 1rem;
+}
+.card-title {
+	margin-bottom: 0;
+}

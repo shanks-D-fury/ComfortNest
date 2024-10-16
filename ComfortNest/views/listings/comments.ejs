@@ -6,10 +6,14 @@
 		<div class="card review-card col-5 ms-2 mb-2">
 			<div class="card-body">
 				<h6 class="card-title">@<%= review.author.username%></h6>
-				<p class="card-text"><%= review.comment %></p>
+				<span
+					class="card-text card-date-text created-at"
+					data-created-at="<%= review.createdAt %>"
+				></span>
+				<p class="card-text"><%=review.comment %></p>
 				<div class="review-stars-trash">
-					<span class="card-text">
-						<i class="fa-regular fa-star"></i><%= review.rating %>
+					<span class="card-text rating-star-text">
+						<i class="fa-solid fa-star"></i><%= review.rating %>
 					</span>
 					<form
 						action="/listings/<%= listing._id %>/review/<%= review._id %>?_method=DELETE"
@@ -27,3 +31,24 @@
 		<% } %>
 	</div>
 </div>
+<script>
+	// Helper function to format date to DD/MM/YYYY
+	function formatDateToEuropean(date) {
+		let d = new Date(date);
+		let day = d.getDate().toString().padStart(2, "0"); // Add leading zero to day
+		let month = (d.getMonth() + 1).toString().padStart(2, "0"); // Add leading zero to month
+		let year = d.getFullYear();
+
+		return `${day}/${month}/${year}`; // Format as "DD/MM/YYYY"
+	}
+
+	// Select all elements with the class 'created-at'
+	const createdAtElements = document.querySelectorAll(".created-at");
+
+	// Loop through each element and update its innerHTML with the formatted date
+	createdAtElements.forEach(function (element) {
+		const rawDate = element.getAttribute("data-created-at"); // Get the raw createdAt value
+		const formattedDate = formatDateToEuropean(rawDate); // Format the date
+		element.innerHTML = `${formattedDate}`; // Update the element with formatted date
+	});
+</script>

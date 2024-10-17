@@ -24,9 +24,6 @@ router
 		ListingValidation,
 		AsyncWrap(listingControllers.newListing)
 	);
-// .post(upload.single("Listing[image]"), (req, res) => {
-// 	res.send(req.file);
-// });
 
 router
 	.route("/:id")
@@ -34,6 +31,7 @@ router
 	.put(
 		isLoggedIn,
 		checkOwner,
+		upload.single("Listing[image]"),
 		ListingValidation,
 		AsyncWrap(listingControllers.updateListing)
 	)

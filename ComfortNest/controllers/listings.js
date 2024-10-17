@@ -25,7 +25,7 @@ module.exports.showRender = async (req, res) => {
 module.exports.newListing = async (req, res) => {
 	const newHotelInfo = new hotelInfo(req.body.Listing);
 	newHotelInfo.owner = req.user._id;
-	if (req.file.path) {
+	if (typeof req.file != "undefined") {
 		newHotelInfo.image.url = req.file.path;
 		newHotelInfo.image.filename = req.file.filename;
 	}
@@ -46,7 +46,12 @@ module.exports.editFormRender = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
 	let { id } = req.params;
-	await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
+	let listing = await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
+	if (typeof req.file != "undefined") {
+		listing.image.url = req.file.path;
+		listing.image.filename = req.file.filename;
+	}
+	await listing.save();
 	req.flash("success", "Listing Editied Succesfully");
 	res.redirect(`/listings/${id}`);
 };

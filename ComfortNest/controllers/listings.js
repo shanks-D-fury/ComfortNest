@@ -25,6 +25,8 @@ module.exports.showRender = async (req, res) => {
 module.exports.newListing = async (req, res) => {
 	const newHotelInfo = new hotelInfo(req.body.Listing);
 	newHotelInfo.owner = req.user._id;
+	newHotelInfo.image.url = req.file.path;
+	newHotelInfo.image.filename = req.file.filename;
 	await newHotelInfo.save();
 	req.flash("success", "New Listing Succesfully Created");
 	res.redirect("/listings");

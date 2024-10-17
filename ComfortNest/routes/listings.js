@@ -7,6 +7,8 @@ const {
 	ListingValidation,
 } = require("../utils/Middlewares.js");
 const listingControllers = require("../controllers/listings.js");
+const multer = require("multer"); //multer helps in the parsing the data of file format into the redable format and helps in storing the file in local machine or in server
+const upload = multer({ dest: "uploads/" });
 
 //Index route
 router.get("/", AsyncWrap(listingControllers.indexListing));
@@ -15,11 +17,15 @@ router.get("/", AsyncWrap(listingControllers.indexListing));
 router
 	.route("/new")
 	.get(isLoggedIn, listingControllers.newFormRender)
-	.post(
-		isLoggedIn,
-		ListingValidation,
-		AsyncWrap(listingControllers.newListing)
-	);
+	// .post(
+	// 	isLoggedIn,
+	// 	ListingValidation,
+	// 	upload.single("Listing[image]"),
+	// 	AsyncWrap(listingControllers.newListing)
+	// );
+	.post(upload.single("Listing[image]"), (req, res) => {
+		res.send(req.file);
+	});
 
 router
 	.route("/:id")

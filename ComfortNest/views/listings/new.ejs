@@ -29,12 +29,18 @@
 						placeholder="Description of hotel"
 						type="text"
 						class="form-control"
+						rows="1"
 						required
 					></textarea>
 				</div>
 				<div class="mb-2">
 					<label for="image" class="form-image">Upload Image</label>
-					<input name="Listing[image]" type="file" class="form-control" />
+					<input
+						name="Listing[image]"
+						type="file"
+						class="form-control"
+						required
+					/>
 				</div>
 				<div class="row">
 					<div class="mb-2 col-md-4">
@@ -65,7 +71,7 @@
 					<label for="location" class="form-location">Location</label>
 					<input
 						name="Listing[location]"
-						placeholder="Bengaluru / KGF"
+						placeholder="Bengaluru"
 						type="text"
 						class="form-control"
 						required

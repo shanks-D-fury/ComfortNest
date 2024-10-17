@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/listings/comments.css" />
-<div class="col-7 offset-2 mb-3">
+<div class="col offset-1 mb-3 tab-border">
 	<h3>Reviews</h3>
 	<div class="row">
 		<% for(review of listing.reviews){ %>
-		<div class="card review-card col-5 ms-2 mb-2">
+		<div class="card review-card col-md-10 ms-md-4 mb-2 col-xs-8 ms-xs-2">
 			<div class="card-body">
-				<h6 class="card-title">@<%= review.author.username%></h6>
+				<h6 class="card-title">@ <%= review.author.username%></h6>
 				<span
 					class="card-text card-date-text created-at"
 					data-created-at="<%= review.createdAt %>"

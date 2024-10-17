@@ -37,3 +37,6 @@ input[type="range"]::-webkit-slider-runnable-track {
 .form-control {
 	border: #21252976 solid 0.05rem;
 }
+.starability-basic {
+	scale: 0.75;
+}

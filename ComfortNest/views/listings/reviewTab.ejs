@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="/listings/reviewTab.css" />
 <link rel="stylesheet" href="/listings/rating.css" />
 <% if(currentUser){ %>
-<div class="col-6 offset-1 mb-3">
+<div class="col offset-1 mb-3 tab-border mt-3">
 	<form
 		action="/listings/<%=listing._id  %>/review"
 		method="post"
 		novalidate
 		class="needs-validation"
 	>
-		<div class="mb-3 rating-bar">
+		<div class="mb-1 rating-bar">
 			<label for="rating" class="form-label rating-form-label">Rating </label>
 			<fieldset class="starability-basic" id="rating">
 				<input
@@ -47,6 +47,5 @@
 		</div>
 		<button type="submit" class="btn btn-dark">submit</button>
 	</form>
-	<hr />
 </div>
 <% } %>

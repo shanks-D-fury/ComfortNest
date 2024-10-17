@@ -27,3 +27,15 @@ body {
 	text-align: center;
 	/* margin-left: -10%; */
 }
+.tab-border {
+	border: solid rgba(0, 0, 0, 0.148) 1px;
+	border-radius: 1rem;
+	padding: 1rem;
+}
+.special-tab-border {
+	padding-left: 0.1rem;
+}
+
+#map {
+	width: 100%;
+}

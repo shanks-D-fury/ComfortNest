@@ -40,6 +40,17 @@ const hotelInfoListingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "User",
 	}, // owner for the authorization is added to the listing
+	geometry: {
+		type: {
+			type: String, // Don't do `{ location: { type: String } }`
+			enum: ["Point"], // 'location.type' must be 'Point'
+			required: true,
+		},
+		coordinates: {
+			type: [Number],
+			required: true,
+		},
+	},
 });
 
 hotelInfoListingSchema.post(

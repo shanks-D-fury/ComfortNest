@@ -1,4 +1,5 @@
 const hotelInfo = require("../models/hotelListing.js");
+const Map_coordinates = require("../utils/mapCoOridinates.js");
 
 module.exports.indexListing = async (req, res) => {
 	const featchedInfo = await hotelInfo.find();
@@ -23,13 +24,17 @@ module.exports.showRender = async (req, res) => {
 };
 
 module.exports.newListing = async (req, res) => {
+	let { location, country } = req.body.Listing;
+	const geometry = await Map_coordinates(location, country);
 	const newHotelInfo = new hotelInfo(req.body.Listing);
 	newHotelInfo.owner = req.user._id;
 	if (typeof req.file != "undefined") {
 		newHotelInfo.image.url = req.file.path;
 		newHotelInfo.image.filename = req.file.filename;
 	}
-	await newHotelInfo.save();
+	newHotelInfo.geometry = geometry;
+	let listing = await newHotelInfo.save();
+	console.log(listing);
 	req.flash("success", "New Listing Succesfully Created");
 	res.redirect("/listings");
 };

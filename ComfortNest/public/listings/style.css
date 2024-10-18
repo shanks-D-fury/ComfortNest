@@ -30,24 +30,3 @@ body {
 	text-align: center;
 	/* margin-left: -10%; */
 }
-.tab-border {
-	border: solid rgba(0, 0, 0, 0.148) 1px;
-	border-radius: 1rem;
-	padding: 1rem;
-}
-.special-tab-border {
-	padding-left: 0.5rem;
-}
-
-#map {
-	height: 45vh;
-	width: 34svw;
-	border: 1px solid rgba(0, 0, 0, 0.378);
-	border-radius: 1rem;
-}
-
-@media (max-width: 765px) {
-	#map {
-		width: 60vw;
-	}
-}

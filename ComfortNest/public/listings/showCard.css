@@ -31,3 +31,27 @@
 .card-text {
 	margin-bottom: 1%;
 }
+
+.tab-border {
+	border: solid rgba(0, 0, 0, 0.148) 1px;
+	border-radius: 1rem;
+	padding: 1rem;
+}
+.special-tab-border {
+	padding-left: 0.5rem;
+	position: relative;
+	left: -1rem;
+}
+
+#map {
+	height: 45vh;
+	width: 34svw;
+	border: 1px solid rgba(0, 0, 0, 0.378);
+	border-radius: 1rem;
+}
+
+@media (max-width: 765px) {
+	#map {
+		width: 60vw;
+	}
+}

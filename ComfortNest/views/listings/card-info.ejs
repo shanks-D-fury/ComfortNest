@@ -1,43 +1,52 @@
-<h4 class="col-md-10 offset-1">
-	<b class="show-non-italic"><%= listing.title%></b> <br />
-</h4>
-<div class="card col-md-11 show-card offset-1">
-	<img
-		src="<%= listing.image.url%>"
-		class="card-img-top"
-		alt="<%= listing.title%>"
-	/>
-	<div class="card-body">
-		<div class="card-text">
-			<p class="card-text">
-				Post Owned By:-<i> <b><%= listing.owner.username %></b></i>
-			</p>
-			<p class="card-text"><%= listing.description%></p>
-			<p class="card-text">
-				&#8377; <%= listing.price.toLocaleString("en-in")%> /night
-			</p>
-			<p class="card-text"><%= listing.location%></p>
-			<p class="card-text"><%= listing.country%></p>
+<div class="col offset-1 special-tab-border">
+	<h4 class="col-md-10">
+		<b class="show-non-italic"><%= listing.title%></b> <br />
+	</h4>
+	<div class="card col-md-12 show-card">
+		<img
+			src="<%= listing.image.url%>"
+			class="card-img-top"
+			alt="<%= listing.title%>"
+		/>
+		<div class="card-body">
+			<div class="card-text">
+				<p class="card-text">
+					Post Owned By:-<i> <b><%= listing.owner.username %></b></i>
+				</p>
+				<p class="card-text"><%= listing.description%></p>
+				<p class="card-text">
+					&#8377; <%= listing.price.toLocaleString("en-in")%> /night
+				</p>
+				<p class="card-text"><%= listing.location%></p>
+				<p class="card-text"><%= listing.country%></p>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
-<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
-<div class="col col-btns offset-1">
-	<a href="/listings/<%=listing._id  %>/edit" class="btn btn-dark">Edit</a>
-	<form
-		action="/listings/<%=listing._id  %>?_method=DELETE"
-		method="post"
-		class="card-deleteBtn"
-	>
-		<button class="btn btn-danger">DELETE</button>
-	</form>
-</div>
-<% } %>
+	<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
+	<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
+	<div class="col col-btns">
+		<a href="/listings/<%=listing._id  %>/edit" class="btn btn-dark">Edit</a>
+		<form
+			action="/listings/<%=listing._id  %>?_method=DELETE"
+			method="post"
+			class="card-deleteBtn"
+		>
+			<button class="btn btn-danger">DELETE</button>
+		</form>
+	</div>
+	<% } %>
 
-<div class="map offset-1 tab-border special-tab-border">
-	<h4>Where you will be !</h4>
-	<div id="map"></div>
+	<div class="col tab-border special-tab-border">
+		<h4>Where you'll be</h4>
+		<div id="map"></div>
+	</div>
 </div>
 
-<script src="ComfortNest\utils\mapbox.js"></script>
+<script>
+	mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
+	const map = new mapboxgl.Map({
+		container: "map", // container ID
+		center: [78.270721, 12.961736], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+		zoom: 10, // starting zoom
+	});
+</script>

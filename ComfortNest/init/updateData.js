@@ -4,6 +4,7 @@ if (process.env.NODE_ENV != "production") {
 const initData1 = require("./newData.js"); // this file needs both image and coordinate
 const initData2 = require("./data.js"); // this file only needs coordinate
 const fs = require("fs");
+const Map_coordinates = require("../utils/mapCoOridinates.js");
 
 const updateDataWithImagesAndCoordinates = async () => {
 	const updatedData = [];
@@ -60,4 +61,4 @@ const updateDataWithCoordinates = async () => {
 	);
 };
 
-// updateDataWithCoordinates();
+updateDataWithCoordinates();

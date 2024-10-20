@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-// const initData = require("./newData.js");
-const initData = require("./data.js");
+const initData = require("./newData.js");
+// const initData = require("./data.js");
 const hotelInfo = require("../models/hotelListing.js");
+const Review = require("../models/reviews.js");
 
 main()
 	.then(() => {
@@ -15,10 +16,11 @@ async function main() {
 
 const init = async () => {
 	await hotelInfo.deleteMany({});
+	await Review.deleteMany({});
 	initData.data = initData.data.map((obj) => ({
 		...obj,
 		owner: "66fcdac2d6b780ece6f51985",
-	})); // The above owner id is the owner shanksDfury and password is {usual}
+	}));
 	await hotelInfo.insertMany(initData.data);
 	console.log("Data saved succesfull");
 };

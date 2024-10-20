@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/listings/map.css" />
+<div class="col tab-border special-tab-border">
+	<h4>Where you'll be</h4>
+	<div
+		id="map"
+		data-coordinates="<%= JSON.stringify(listing.geometry.coordinates) %>"
+		data-title="<%=JSON.stringify(listing.title) %>"
+	></div>
+</div>
+<script>
+	const mapElement = document.getElementById("map");
+	const coordinates = JSON.parse(mapElement.getAttribute("data-coordinates"));
+	const title = JSON.parse(mapElement.getAttribute("data-title"));
+
+	mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
+	const map = new mapboxgl.Map({
+		container: "map", // container ID
+		center: coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
+		zoom: 10, // starting zoom
+	});
+
+	const marker = new mapboxgl.Marker({ color: "red" })
+		.setLngLat(coordinates)
+		.setPopup(
+			new mapboxgl.Popup({ offset: 10 }).setHTML(
+				`<h4>${title}</h4><p>Exact Location Provided after booking!</p>`
+			)
+		)
+		.addTo(map);
+</script>

@@ -34,19 +34,5 @@
 			<button class="btn btn-danger">DELETE</button>
 		</form>
 	</div>
-	<% } %>
-
-	<div class="col tab-border special-tab-border">
-		<h4>Where you'll be</h4>
-		<div id="map"></div>
-	</div>
+	<% } %><%- include("../listings/map.ejs") %>
 </div>
-
-<script>
-	mapboxgl.accessToken = "<%= process.env.MAP_TOKEN %>";
-	const map = new mapboxgl.Map({
-		container: "map", // container ID
-		center: [78.270721, 12.961736], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-		zoom: 10, // starting zoom
-	});
-</script>

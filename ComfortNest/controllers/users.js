@@ -45,11 +45,11 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.addNightFury = async (req, res) => {
 	try {
-		let fakeUser = new User({
+		let Userx = new User({
 			email: "shanks@gmail.com",
 			username: "night_fury",
 		});
-		await User.register(fakeUser, "shanks@1468");
+		await User.register(Userx, "shanks@1468");
 		req.flash("success", "{ night_fury } Added Succesfully!");
 		res.redirect("/listings");
 	} catch (err) {
@@ -58,7 +58,7 @@ module.exports.addNightFury = async (req, res) => {
 	}
 };
 
-module.exports.loginNightFury = async (req, res) => {
+module.exports.loginNightFury = async (req, res, next) => {
 	let night_fury = await User.findOne({ username: "night_fury" });
 	req.login(night_fury, (err) => {
 		if (err) {

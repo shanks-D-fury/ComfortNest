@@ -1,6 +1,5 @@
 .f-info {
 	width: 100%;
-	height: 3rem;
 	display: flex;
 	justify-content: space-between;
 	background-color: rgb(238, 234, 234);
@@ -17,15 +16,31 @@
 .f-info-links a:hover {
 	text-decoration: underline;
 }
-.f-info-socialMedia {
-	margin-right: 2%;
-}
 .f-info-name {
-	margin-left: 2%;
+	display: flex;
+	justify-content: center;
+}
+.f-info-links {
+	display: flex;
+	justify-content: center;
 }
 
-.f-info-socialMedia i {
+.f-info-socialMedia {
+	/* width: 10%; */
 	font-size: 1.2rem;
-	margin-right: 0.5rem;
-	text-align: right;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.f-info-socialMedia i {
+	margin-left: 1rem;
+}
+@media (max-width: 768px) {
+	/* .f-info-socialMedia {
+		width: 20%;
+	} */
+	.f-info {
+		justify-content: center;
+		line-height: 1.5rem;
+	}
 }

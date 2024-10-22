@@ -1,36 +1,45 @@
 <link rel="stylesheet" href="/listings/filterBar.css" />
 <div class="row mt-2">
-	<div class="col-7">
-		<div class="category-filter">
-			<button class="category-btn" data-category="all">
-				<p><i class="fa-regular fa-compass"></i></p>
-				Explore
+	<div class="col-sm-6">
+		<div class="slider-container">
+			<button class="scroll-left scroll-button" id="leftButton">
+				<i class="fa-solid fa-angle-left"></i>
 			</button>
-			<button class="category-btn" data-category="rooms">
-				<p><i class="fa-solid fa-bed"></i></p>
-				Rooms
-			</button>
-			<button class="category-btn" data-category="cities">
-				<p><i class="fa-solid fa-city"></i></p>
-				Cities
-			</button>
-			<button class="category-btn" data-category="mountain">
-				<p><i class="fa-solid fa-mountain-sun"></i></p>
-				Mountain
-			</button>
-			<button class="category-btn" data-category="pools">
-				<p><i class="fa-solid fa-person-swimming"></i></p>
-				Pools
-			</button>
-			<button class="category-btn" data-category="mansions">
-				<p><i class="fa-brands fa-fort-awesome"></i></p>
-				Mansions
-			</button>
-			<button class="category-btn" data-category="farms">
-				<p><i class="fa-solid fa-cow"></i></p>
-				Farms
+			<div class="category-filter slider" id="slider">
+				<button class="category-btn" data-category="all">
+					<p><i class="fa-regular fa-compass"></i></p>
+					Explore
+				</button>
+				<button class="category-btn" data-category="rooms">
+					<p><i class="fa-solid fa-bed"></i></p>
+					Rooms
+				</button>
+				<button class="category-btn" data-category="cities">
+					<p><i class="fa-solid fa-city"></i></p>
+					Cities
+				</button>
+				<button class="category-btn" data-category="mountain">
+					<p><i class="fa-solid fa-mountain-sun"></i></p>
+					Mountain
+				</button>
+				<button class="category-btn" data-category="pools">
+					<p><i class="fa-solid fa-person-swimming"></i></p>
+					Pools
+				</button>
+				<button class="category-btn" data-category="mansions">
+					<p><i class="fa-brands fa-fort-awesome"></i></p>
+					Mansions
+				</button>
+				<button class="category-btn" data-category="farms">
+					<p><i class="fa-solid fa-cow"></i></p>
+					Farms
+				</button>
+			</div>
+			<button class="scroll-right scroll-button" id="rightButton">
+				<i class="fa-solid fa-angle-right"></i>
 			</button>
 		</div>
 	</div>
 </div>
 <script src="/JS/filterListing.js"></script>
+<script src="/JS/filterScroll.js"></script>

@@ -1,7 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <link rel="stylesheet" href="/listings/cards.css" />
 <body>
-	<div class="row row-col-lg-4">
+	<%- include("../listings/filterBar.ejs") %>
+	<div class="row row-col-lg-4 mt-4" id="listingsContainer">
 		<% for(let listing of featchedInfo) {%>
 		<div class="card" style="width: 22.5rem">
 			<a href="/listings/<%= listing._id%>" id="normalTitleLink">

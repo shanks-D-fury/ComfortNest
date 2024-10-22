@@ -66,3 +66,20 @@ module.exports.destroyListing = async (req, res) => {
 	req.flash("success", "Listing Deleted Succesfully");
 	res.redirect(`/listings`);
 };
+
+module.exports.filterListings = async (req, res) => async (req, res) => {
+	const { category } = req.query;
+	let listings;
+	try {
+		// If "all" is selected, return all listings; otherwise, filter by category
+		if (category === "all") {
+			listings = await hotelInfo.find({});
+		} else {
+			listings = await hotelInfo.find({ category });
+		}
+
+		res.json(listings);
+	} catch (error) {
+		res.status(500).json({ message: "Error fetching listings" });
+	}
+};

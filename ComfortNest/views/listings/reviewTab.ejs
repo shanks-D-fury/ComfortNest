@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/listings/reviewTab.css" />
 <link rel="stylesheet" href="/listings/rating.css" />
+<link rel="stylesheet" href="/listings/customRating.css" />
 <% if(currentUser){ %>
 <div class="col offset-1 mb-3 tab-border mt-3">
 	<form
@@ -8,9 +9,16 @@
 		novalidate
 		class="needs-validation"
 	>
-		<div class="mb-1 rating-bar">
+		<!-- <div class="mb-1 rating-bar">
 			<label for="rating" class="form-label rating-form-label">Rating </label>
-			<fieldset class="starability-basic" id="rating">
+			paste here
+		</div> -->
+		<div class="mb-1 rating-bar rating">
+			<div>
+				<label for="rating" class="form-label rating-form-label">Rating </label>
+			</div>
+			<div class="mb-1 rating-form-icons">
+				<!-- Radio buttons (hidden) -->
 				<input
 					type="radio"
 					id="no-rate"
@@ -19,18 +27,49 @@
 					value="1"
 					checked
 					aria-label="No rating."
+					hidden
 				/>
-				<input type="radio" id="first-rate1" name="Review[rating]" value="1" />
-				<label for="first-rate1" title="Terrible">1 star</label>
-				<input type="radio" id="first-rate2" name="Review[rating]" value="2" />
-				<label for="first-rate2" title="Not good">2 stars</label>
-				<input type="radio" id="first-rate3" name="Review[rating]" value="3" />
-				<label for="first-rate3" title="Average">3 stars</label>
-				<input type="radio" id="first-rate4" name="Review[rating]" value="4" />
-				<label for="first-rate4" title="Very good">4 stars</label>
-				<input type="radio" id="first-rate5" name="Review[rating]" value="5" />
-				<label for="first-rate5" title="Amazing">5 stars</label>
-			</fieldset>
+				<input
+					type="radio"
+					id="rate-1"
+					name="Review[rating]"
+					value="1"
+					hidden
+				/>
+				<input
+					type="radio"
+					id="rate-2"
+					name="Review[rating]"
+					value="2"
+					hidden
+				/>
+				<input
+					type="radio"
+					id="rate-3"
+					name="Review[rating]"
+					value="3"
+					hidden
+				/>
+				<input
+					type="radio"
+					id="rate-4"
+					name="Review[rating]"
+					value="4"
+					hidden
+				/>
+				<input
+					type="radio"
+					id="rate-5"
+					name="Review[rating]"
+					value="5"
+					hidden
+				/>
+				<span class="fa fa-star" id="star1" onclick="rate(1)"></span>
+				<span class="fa fa-star" id="star2" onclick="rate(2)"></span>
+				<span class="fa fa-star" id="star3" onclick="rate(3)"></span>
+				<span class="fa fa-star" id="star4" onclick="rate(4)"></span>
+				<span class="fa fa-star" id="star5" onclick="rate(5)"></span>
+			</div>
 		</div>
 		<div class="mb-3">
 			<label for="comment" class="form-label comment-form-label">Comment</label

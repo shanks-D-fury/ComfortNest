@@ -1,0 +1,11 @@
+.fa-star {
+	font-size: 1.1rem;
+	color: rgba(0, 0, 0, 0.36) !important;
+	cursor: pointer;
+}
+.fa-star.checked {
+	color: #f5bd23 !important;
+}
+.rating-form-icons {
+	margin-right: 10%;
+}

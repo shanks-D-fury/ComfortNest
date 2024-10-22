@@ -2,32 +2,37 @@
 <div class="col offset-1 mb-3 tab-border">
 	<h3>Reviews</h3>
 	<div class="row">
-		<% for(review of listing.reviews){ %>
+		<% if (Array.isArray(listing.reviews) && listing.reviews.length > 0) { %> <%
+		for (let i = listing.reviews.length - 1; i >= 0; i--) { %> <% const review =
+		listing.reviews[i]; %>
 		<div class="card review-card col-md-10 ms-md-4 mb-2 col-xs-8 ms-xs-2">
 			<div class="card-body">
-				<h6 class="card-title">@ <%= review.author.username%></h6>
+				<h6 class="card-title">@ <%= review.author.username %></h6>
 				<span
 					class="card-text card-date-text created-at"
 					data-created-at="<%= review.createdAt %>"
 				></span>
-				<p class="card-text"><%=review.comment %></p>
+				<p class="card-text"><%= review.comment %></p>
 				<div class="review-stars-trash">
 					<span class="card-text rating-star-text">
-						<i class="fa-solid fa-star"></i><%= review.rating %>
+						<i class="fa-solid fa-star" style="color: #f5bd23 !important"></i
+						><%= review.rating %>
 					</span>
 					<form
 						action="/listings/<%= listing._id %>/review/<%= review._id %>?_method=DELETE"
 						method="post"
 					>
 						<button type="submit" class="btn btn-danger">
-							<span class="review-trash-symbol"
-								><i class="fa-solid fa-trash"></i
-							></span>
+							<span class="review-trash-symbol">
+								<i class="fa-solid fa-trash"></i>
+							</span>
 						</button>
 					</form>
 				</div>
 			</div>
 		</div>
+		<% } %> <% } else { %>
+		<p>No reviews available for this listing.</p>
 		<% } %>
 	</div>
 </div>

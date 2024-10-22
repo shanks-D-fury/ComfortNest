@@ -2,11 +2,14 @@
 <link rel="stylesheet" href="/listings/showCard.css" />
 <body>
 	<div class="row row-coustom">
-		<div class="col-md-6"><%- include("../listings/card-info.ejs") %></div>
+		<div class="col-md-6 offset-sm-1 offset-md-0">
+			<%- include("../listings/card-info.ejs") %>
+		</div>
 		<div class="col-md-6">
 			<%- include("../listings/reviewTab.ejs") %> <%-
 			include("../listings/comments.ejs") %>
 		</div>
 	</div>
 </body>
+<script src="/JS/rating.js"></script>
 <script src="/JS/map.js"></script>

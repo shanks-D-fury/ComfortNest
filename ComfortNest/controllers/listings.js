@@ -34,7 +34,6 @@ module.exports.newListing = async (req, res) => {
 	}
 	newHotelInfo.geometry = geometry;
 	let listing = await newHotelInfo.save();
-	console.log(listing);
 	req.flash("success", "New Listing Succesfully Created");
 	res.redirect("/listings");
 };

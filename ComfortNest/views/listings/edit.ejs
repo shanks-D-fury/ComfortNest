@@ -51,42 +51,61 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="mb-2 col-md-4">
+					<div class="mb-2 col-md-6">
 						<label for="price" class="form-price">Price</label>
 						<input
 							name="Listing[price]"
 							placeholder="14684"
-							type="number"
 							value="<%= Listing.price %>"
-							required
+							type="number"
 							class="form-control"
+							required
 						/>
 						<div class="invalid-feedback">Please enter valid Price</div>
 					</div>
-					<div class="mb-2 col-md-8">
+					<div class="col-md-6">
+						<label for="category" class="form-category">Category</label>
+						<select
+							name="Listing[category]"
+							class="form-select"
+							aria-label="Default select example"
+							required
+						>
+							<option value="<%=Listing.category %>">select a category</option>
+							<option value="rooms">Rooms</option>
+							<option value="cities">Cities</option>
+							<option value="mountain">Mountain</option>
+							<option value="pools">Pools</option>
+							<option value="mansions">Mansions</option>
+							<option value="farms">Farms</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-md-7">
+						<label for="location" class="form-location">Location</label>
+						<input
+							name="Listing[location]"
+							placeholder="Bengaluru"
+							type="text"
+							value="<%= Listing.location %>"
+							class="form-control"
+							required
+						/>
+						<div class="invalid-feedback">Please enter valid Location</div>
+					</div>
+					<div class="mb-2 col-md-5">
 						<label for="country" class="form-country">Country</label>
 						<input
 							name="Listing[country]"
 							placeholder="India"
-							type="text"
-							required
 							value="<%= Listing.country %>"
+							type="text"
 							class="form-control"
+							required
 						/>
 						<div class="invalid-feedback">Please enter valid Country Name</div>
 					</div>
-				</div>
-				<div class="mb-3">
-					<label for="location" class="form-location">Location</label>
-					<input
-						name="Listing[location]"
-						placeholder="Bengaluru , KGF"
-						required
-						value="<%= Listing.location %>"
-						type="text"
-						class="form-control"
-					/>
-					<div class="invalid-feedback">Please enter valid Location</div>
 				</div>
 				<button class="btn btn-dark">Edit</button>
 			</form>

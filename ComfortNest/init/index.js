@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const initData = require("./newData.js");
-// const initData = require("./data.js");
+// const initData = require("./newData.js");
+const initData = require("./data.js");
 const hotelInfo = require("../models/hotelListing.js");
 const Review = require("../models/reviews.js");
 
@@ -25,4 +25,51 @@ const init = async () => {
 	console.log("Data saved succesfull");
 };
 
-init();
+const categories = [
+	"rooms",
+	"cities",
+	"mountain",
+	"pools",
+	"mansions",
+	"farms",
+];
+
+// Function to add random category to all listings
+async function addRandomCategoryToAllListings() {
+	try {
+		// Fetch all listings from the database
+		const listings = await hotelInfo.find({});
+
+		if (listings.length === 0) {
+			console.log("No listings found");
+			return;
+		}
+
+		// Iterate through each listing and assign a random category
+		for (let listing of listings) {
+			// Select a random category from the array
+			const randomCategory =
+				categories[Math.floor(Math.random() * categories.length)];
+
+			// Update the category of the listing
+			listing.category = randomCategory;
+
+			// Save the updated listing
+			await listing.save();
+		}
+		console.log("All listings have been updated with random categories.");
+	} catch (err) {
+		console.error("Error updating listings:", err);
+	}
+}
+
+const startProcess = async () => {
+	try {
+		await init(); // Ensure init is done first
+		await addRandomCategoryToAllListings(); // Then call addRandomCategoryToAllListings
+	} catch (err) {
+		console.error("Error in process:", err);
+	}
+};
+
+startProcess();

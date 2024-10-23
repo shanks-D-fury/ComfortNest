@@ -18,3 +18,15 @@ label {
 .row textarea::placeholder {
 	opacity: 0.5;
 }
+/* .form-select option {
+	font-size: 10px;
+}
+.form-select {
+	width: 10rem;
+} */
+@media (max-width: 768px) {
+	.form-select {
+		/* width: 50%; Full width on small screens */
+		font-size: 10px;
+	}
+}

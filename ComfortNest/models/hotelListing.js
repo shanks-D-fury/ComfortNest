@@ -3,6 +3,7 @@ const { type } = require("os");
 const Schema = mongoose.Schema;
 const Review = require("./reviews.js");
 const { listingSchema } = require("../utils/validationSchema.js");
+const { required } = require("joi");
 
 const hotelInfoListingSchema = new Schema({
 	title: {
@@ -50,6 +51,12 @@ const hotelInfoListingSchema = new Schema({
 			type: [Number],
 			required: true,
 		},
+	},
+	category: {
+		type: String,
+		enum: ["rooms", "cities", "mountain", "pools", "mansions", "farms"],
+		required: true,
+		default: "rooms",
 	},
 });
 

@@ -60,7 +60,7 @@ async function main() {
 
 //home route
 app.get("/", (req, res) => {
-	res.send("working");
+	res.redirect("/listings");
 });
 
 app.use((req, res, next) => {
@@ -69,22 +69,7 @@ app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	next();
 });
-app.get("/listings/filter", async (req, res) => {
-	const { category } = req.query;
-	let listings;
-	try {
-		// If "all" is selected, return all listings; otherwise, filter by category
-		if (category === "all") {
-			listings = await hotelInfo.find({});
-		} else {
-			listings = await hotelInfo.find({ category });
-		}
 
-		res.json(listings);
-	} catch (error) {
-		res.status(500).json({ message: "Error fetching listings" });
-	}
-});
 // routes for listing and review
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/review", reviewsRouter);

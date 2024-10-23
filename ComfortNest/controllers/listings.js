@@ -67,7 +67,7 @@ module.exports.destroyListing = async (req, res) => {
 	res.redirect(`/listings`);
 };
 
-module.exports.filterListings = async (req, res) => async (req, res) => {
+module.exports.filterListings = async (req, res) => {
 	const { category } = req.query;
 	let listings;
 	try {

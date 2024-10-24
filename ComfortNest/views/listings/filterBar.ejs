@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/listings/filterBar.css" />
-<div class="row mt-2">
-	<div class="col-sm-6">
+<div class="row mt-2 align-items-center filterBar-mainDiv">
+	<div class="col-sm-6 col-10">
 		<div class="slider-container">
 			<button class="scroll-left scroll-button" id="leftButton">
 				<i class="fa-solid fa-angle-left"></i>
@@ -38,6 +38,22 @@
 			<button class="scroll-right scroll-button" id="rightButton">
 				<i class="fa-solid fa-angle-right"></i>
 			</button>
+		</div>
+	</div>
+	<div class="col-sm-3 col-8 ms-sm-auto mt-3 form-toggle">
+		<div class="form-check-reverse form-switch">
+			<input
+				class="form-check-input"
+				type="checkbox"
+				role="switch"
+				id="flexSwitchCheckDefault"
+			/>
+			<label
+				class="form-check-label"
+				for="flexSwitchCheckDefault"
+				style="font-weight: 600; margin-right: 0.5rem"
+				>Total After Tax</label
+			>
 		</div>
 	</div>
 </div>

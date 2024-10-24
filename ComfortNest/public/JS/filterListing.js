@@ -13,7 +13,7 @@ categoryButtons.forEach((button) => {
 				// Add the filtered listings
 				data.forEach((listing) => {
 					const listingHtml = `
-            <div class="card" style="width: 22.5rem">
+            <div class="card">
               <a href="/listings/${listing._id}" id="normalTitleLink">
                 <img src="${listing.image.url}" class="card-img-top" alt="${
 						listing.title
@@ -21,7 +21,18 @@ categoryButtons.forEach((button) => {
                 <div class="card-body">
                   <p class="card-text">
                     <b>${listing.title}</b><br />
-                    &#8377; ${listing.price.toLocaleString("en-in")} /night
+                    <span class="price"
+							>&#8377;
+							<span
+								class="listing-price"
+								data-base-price=${listing.price}"
+							>
+								${listing.price.toLocaleString("en-in", {
+									minimumFractionDigits: 2,
+								})}
+							</span>
+							/night</span
+						>
                   </p>
                 </div>
               </a>

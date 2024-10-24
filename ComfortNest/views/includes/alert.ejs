@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="/listings/alerts.css" />
+<link rel="stylesheet" href="/includes/alerts.css" />
 <% if(success && success.length){ %>
 <div
-	class="alert alert-success alert-dismissible fade show col-6 offset-3"
+	class="alert alert-success alert-dismissible fade show col-lg-6 offset-lg-3 col-7 offset-1"
 	role="alert"
 >
-	<%= success %>
+	<span class="ms-4"><%= success %></span>
 	<button
 		type="button"
 		class="btn-close"
@@ -18,7 +18,7 @@
 	class="alert alert-danger alert-dismissible fade show col-6 offset-3"
 	role="alert"
 >
-	<%= error %>
+	<span class="ms-4"><%= error %></span>
 	<button
 		type="button"
 		class="btn-close"

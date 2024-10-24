@@ -27,3 +27,17 @@
 	></button>
 </div>
 <% } %>
+
+<script>
+	// Function to automatically close the alert after 2 seconds
+	setTimeout(function () {
+		// Find the alert elements
+		const alertElement = document.querySelector(".alert");
+
+		if (alertElement) {
+			// Trigger Bootstrap's alert dismiss method
+			const alertDismiss = new bootstrap.Alert(alertElement);
+			alertDismiss.close(); // Dismiss the alert
+		}
+	}, 2000); // 2000ms = 2 seconds
+</script>

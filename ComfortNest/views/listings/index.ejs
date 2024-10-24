@@ -3,7 +3,7 @@
 <body>
 	<%- include("../listings/filterBar.ejs") %>
 	<div class="row row-col-1 row-col-sm-2 mt-4" id="listingsContainer">
-		<% for(let listing of featchedInfo) {%>
+		<% if (featchedInfo.length) { %> <% for(let listing of featchedInfo) {%>
 		<div class="card">
 			<a href="/listings/<%= listing._id%>" id="normalTitleLink">
 				<img
@@ -29,6 +29,12 @@
 				</div>
 			</a>
 		</div>
+		<% } %> <% } else { %>
+		<div class="not-found-body col-4">
+			<p>No listings found for the search term.</p>
+			<a href="/listings" class="btn btn-outline-danger">Go Back</a>
+		</div>
+
 		<% } %>
 	</div>
 </body>

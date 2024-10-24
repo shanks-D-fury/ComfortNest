@@ -24,11 +24,17 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav ms-auto">
-				<form class="d-flex" role="search">
+				<form
+					class="d-flex"
+					role="search"
+					method="GET"
+					action="/listings/search"
+				>
 					<input
 						class="form-control me-2 search-input"
 						type="search"
-						placeholder="Search Nest's"
+						name="location"
+						placeholder="Search Nest's by Destinations"
 					/>
 					<button class="btn btn-outline-danger" type="submit">
 						<i class="fa-solid fa-magnifying-glass"></i>Search

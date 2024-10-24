@@ -17,6 +17,9 @@ router.get("/", AsyncWrap(listingControllers.indexListing));
 // filter route
 router.get("/filter", listingControllers.filterListings);
 
+//search route
+router.get("/search", listingControllers.searchListings);
+
 //new route
 router
 	.route("/new")

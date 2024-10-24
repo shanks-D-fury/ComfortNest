@@ -22,6 +22,7 @@
 }
 .card-text {
 	color: black;
+	margin-bottom: 0.25rem !important;
 }
 
 .index-flash-msg {
@@ -48,4 +49,23 @@
 	.card {
 		width: calc(50% - 10px); /* Two cards side by side with some spacing */
 	}
+}
+
+.listing-price {
+	transition: font-weight 1s;
+}
+.bold-price {
+	font-weight: 600;
+}
+.not-found-body {
+	text-align: center;
+	border: solid 1px rgba(0, 0, 0, 0.497);
+	border-radius: 2rem;
+	padding: 1rem 0;
+	box-shadow: 0 0.25rem 0.35rem rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.not-found-body:hover {
+	transform: translateY(-0.1rem);
+	box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
 }

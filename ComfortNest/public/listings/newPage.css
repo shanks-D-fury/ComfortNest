@@ -1,7 +1,8 @@
 label {
 	font-size: larger;
 }
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
 	border-color: rgb(255, 56, 92, 0.35); /* Optional: Change the border color */
 	box-shadow: 0 0 5px 3px rgb(255, 56, 92, 0.35); /* Custom green shadow */
 }

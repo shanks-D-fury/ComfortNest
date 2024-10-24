@@ -20,3 +20,7 @@
 .form-control {
 	border: 1px solid black;
 }
+.form-control:focus {
+	border-color: rgb(255, 56, 92, 0.35); /* Optional: Change the border color */
+	box-shadow: 0 0 5px 3px rgb(255, 56, 92, 0.35); /* Custom green shadow */
+}

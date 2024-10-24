@@ -8,6 +8,7 @@
 	padding-top: 0.25rem;
 	border-top: 0.15rem #dee2e6 solid;
 	font-size: 1.1rem;
+	padding-bottom: 1rem;
 }
 .f-info-links a {
 	text-decoration: none;
@@ -36,9 +37,10 @@
 	margin-left: 1rem;
 }
 @media (max-width: 768px) {
-	/* .f-info-socialMedia {
-		width: 20%;
-	} */
+	.f-info-socialMedia {
+		margin-top: 0.25rem !important;
+		margin-bottom: 0.5rem;
+	}
 	.f-info {
 		justify-content: center;
 		line-height: 1.5rem;

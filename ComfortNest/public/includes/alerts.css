@@ -11,9 +11,8 @@
 .alert-dismissible span {
 	font-weight: 500;
 }
-.btn-close {
-	padding: 0.5rem !important;
-	position: relative;
-	margin-right: 1rem;
-	border-radius: 2rem;
+@media (min-width: 992px) {
+	.alert-dismissible {
+		left: 2.5rem;
+	}
 }

@@ -4,10 +4,16 @@
 	align-items: center;
 	position: fixed;
 	z-index: 20;
-	top: 4rem;
+	top: 4.5rem;
 	border-radius: 2rem;
+	opacity: 0.75;
+}
+.alert-dismissible span {
+	font-weight: 500;
 }
 .btn-close {
 	padding: 0.5rem !important;
 	position: relative;
+	margin-right: 1rem;
+	border-radius: 2rem;
 }

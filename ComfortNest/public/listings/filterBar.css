@@ -72,6 +72,12 @@
 	display: flex;
 	justify-content: center;
 }
+@media (min-width: 768px) {
+	.form-toggle {
+		position: relative;
+		bottom: 1rem;
+	}
+}
 @media (max-width: 576px) {
 	.filterBar-mainDiv {
 		justify-content: center !important;

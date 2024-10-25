@@ -41,18 +41,28 @@
 					required
 				/>
 			</div>
-			<div class="mb-4">
-				<input
-					name="confirmPassword"
-					type="password"
-					id="confirmPassword"
-					placeholder="confirm Password"
-					class="form-control mb-3"
-					required
-				/>
-				<span id="passwordError" class="text-danger" style="visibility: hidden"
-					>Passwords do not match</span
-				>
+			<div class="mb-3 row">
+				<div class="col-10">
+					<input
+						name="confirmPassword"
+						type="password"
+						id="confirmPassword"
+						placeholder="confirm Password"
+						class="form-control mb-3"
+						required
+					/>
+					<span
+						id="passwordError"
+						class="text-danger"
+						style="visibility: hidden"
+						>Passwords do not match</span
+					>
+				</div>
+				<div class="col-2">
+					<a class="btn btn-outline-dark" id="togglePassword">
+						<i class="fa-regular fa-eye"></i>
+					</a>
+				</div>
 			</div>
 			<button class="btn btn-outline-dark mb-3" id="submitBtn">Submit</button>
 		</form>
@@ -83,4 +93,23 @@
 	document
 		.getElementById("confirmPassword")
 		.addEventListener("input", validatePasswords);
+
+	// to toggle the visiblity of the password
+	document
+		.getElementById("togglePassword")
+		.addEventListener("click", function () {
+			const passwordInput = document.getElementById("confirmPassword");
+			const icon = this.querySelector("i");
+
+			// Toggle the type attribute
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				icon.classList.remove("fa-eye");
+				icon.classList.add("fa-eye-slash"); // Change icon when password is visible
+			} else {
+				passwordInput.type = "password";
+				icon.classList.remove("fa-eye-slash");
+				icon.classList.add("fa-eye"); // Change icon when password is hidden
+			}
+		});
 </script>

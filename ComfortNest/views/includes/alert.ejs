@@ -3,6 +3,7 @@
 <div
 	class="alert alert-success alert-dismissible fade show col-lg-5 offset-lg-3 col-7 offset-1 justify-content-center"
 	role="alert"
+	id="top-alert"
 >
 	<span class="ms-4"><%= success %></span>
 </div>
@@ -11,6 +12,7 @@
 <div
 	class="alert alert-danger alert-dismissible fade show col-lg-5 offset-lg-3 col-7 offset-1 justify-content-center"
 	role="alert"
+	id="top-alert"
 >
 	<span class="ms-4"><%= error %></span>
 </div>
@@ -20,7 +22,7 @@
 	// Function to automatically close the alert after 2 seconds
 	setTimeout(function () {
 		// Find the alert elements
-		const alertElement = document.querySelector(".alert");
+		const alertElement = document.getElementById("top-alert");
 
 		if (alertElement) {
 			// Trigger Bootstrap's alert dismiss method

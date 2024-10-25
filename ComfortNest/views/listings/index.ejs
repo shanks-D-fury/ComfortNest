@@ -2,7 +2,10 @@
 <link rel="stylesheet" href="/listings/cards.css" />
 <body>
 	<%- include("../listings/filterBar.ejs") %>
-	<div class="row row-col-1 row-col-sm-2 mt-4" id="listingsContainer">
+	<div
+		class="row row-col-1 row-col-sm-2 row-col-xxl-4 mt-4"
+		id="listingsContainer"
+	>
 		<% if (featchedInfo.length) { %> <% for(let listing of featchedInfo) {%>
 		<div class="card">
 			<a href="/listings/<%= listing._id%>" id="normalTitleLink">

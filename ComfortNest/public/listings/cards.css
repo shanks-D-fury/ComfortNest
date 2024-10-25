@@ -38,7 +38,7 @@
 }
 @media (max-width: 431px) {
 	.card {
-		width: 17rem;
+		width: 19rem;
 	}
 }
 @media (min-width: 576px) and (max-width: 768px) {
@@ -48,6 +48,24 @@
 	}
 	.card {
 		width: calc(50% - 10px); /* Two cards side by side with some spacing */
+	}
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+	#listingsContainer {
+		display: flex;
+		flex-wrap: wrap !important;
+	}
+	.card {
+		width: calc(33% - 10px); /* three cards side by side with some spacing */
+	}
+}
+@media (min-width: 1400px) and (max-width: 1600px) {
+	#listingsContainer {
+		display: flex;
+		flex-wrap: wrap !important;
+	}
+	.card {
+		width: calc(25%, -10px);
 	}
 }
 

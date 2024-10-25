@@ -60,3 +60,16 @@
 		width: 60vw;
 	}
 }
+.show-relative-heading {
+	position: relative;
+	left: -1rem;
+}
+@media (max-width: 768px) {
+	.show-relative-heading {
+		left: 0rem;
+	}
+	.rating-relative-tab {
+		position: relative;
+		left: 0.35rem;
+	}
+}

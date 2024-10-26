@@ -62,14 +62,22 @@
 }
 .show-relative-heading {
 	position: relative;
-	left: -1rem;
+	left: -0.25rem;
 }
 @media (max-width: 768px) {
 	.show-relative-heading {
 		left: 0rem;
 	}
+}
+@media (min-width: 576px) and (max-width: 768px) {
 	.rating-relative-tab {
 		position: relative;
 		left: 0.35rem;
+	}
+}
+@media (min-width: 576px) and (max-width: 600px) {
+	.card-info-relative {
+		position: relative;
+		left: -1rem;
 	}
 }

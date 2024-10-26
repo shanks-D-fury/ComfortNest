@@ -9,6 +9,8 @@
 	border-top: 0.15rem #dee2e6 solid;
 	font-size: 1.1rem;
 	padding-bottom: 1rem;
+	position: relative;
+	left: 0.75rem;
 }
 .f-info-links a {
 	text-decoration: none;

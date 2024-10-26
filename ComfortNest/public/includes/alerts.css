@@ -8,6 +8,11 @@
 	border-radius: 2rem;
 	opacity: 0.75;
 }
+@media (max-width: 768px) {
+	.alert-dismissible {
+		height: 4rem;
+	}
+}
 .alert-dismissible span {
 	font-weight: 500;
 }

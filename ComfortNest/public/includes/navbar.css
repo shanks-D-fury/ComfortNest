@@ -45,7 +45,7 @@
 	font-size: 1rem;
 	opacity: 0.75;
 }
-.btn-outline-danger {
+.search-btn {
 	border-radius: 2rem;
 	padding: 0 1rem;
 }
@@ -60,4 +60,17 @@
 .form-control:focus {
 	border-color: rgb(255, 56, 92, 0.35); /* Optional: Change the border color */
 	box-shadow: 0 0 5px 3px rgb(255, 56, 92, 0.35); /* Custom green shadow */
+}
+.dropdown-menu {
+	width: inherit;
+	padding: 0 1rem;
+	opacity: 0;
+	transform: translateY(-10px);
+	transition: opacity 1s ease, transform 1s ease; /* Increase duration for smoother transition */
+}
+
+/* When the dropdown is open */
+.dropdown-menu.show {
+	opacity: 1;
+	transform: translateY(0);
 }

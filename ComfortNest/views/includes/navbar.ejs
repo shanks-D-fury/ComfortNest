@@ -36,47 +36,58 @@
 						name="location"
 						placeholder="Search Nest's by Destinations"
 					/>
-					<button class="btn btn-outline-danger" type="submit">
+					<button class="btn btn-outline-danger search-btn" type="submit">
 						<i class="fa-solid fa-magnifying-glass"></i>Search
 					</button>
 				</form>
 			</div>
 			<div class="navbar-nav ms-auto">
-				<a class="nav-link" href="/listings/new">Nest Your Home</a>
-				<div class="nav-item dropdown">
-					<a
-						class="nav-link dropdown-toggle"
-						href="#"
-						role="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
-						Dropdown link
-					</a>
-					<ul class="dropdown-menu">
-						<% if(!currentUser){ %>
-						<a
-							class="nav-link dropdown-item ms-2"
-							aria-current="page"
-							href="/signup"
-							><b>SignUp</b></a
+				<div class="row d-flex mt-lg-0 mt-3 justify-content-center">
+					<div class="dropdown-center col-4 col-lg-9 ms-auto">
+						<button
+							type="button"
+							class="btn btn-outline-danger dropdown-toggle"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
 						>
-						<a class="nav-link dropdown-item ms-2" href="/login"
-							><b>Login</b></a
-						>
-						<% } %> <% if(currentUser){ %>
-						<a class="nav-link" href="/logout"><b>Logout</b></a>
-						<% } %>
-						<hr class="dropdown-divider" />
-						<button class="btn btn-outline-dark ms-2" href="#">
+							<i class="fa-regular fa-user me-2"></i><% if (currentUser) { %>
+							<span><%= currentUser.username %></span>
+							<% } else { %>
+							<span>anonymous</span>
+							<% } %>
+						</button>
+						<ul class="dropdown-menu">
+							<% if(!currentUser){ %>
+							<a
+								class="nav-link dropdown-item ms-2"
+								aria-current="page"
+								href="/signup"
+								><b>SignUp</b></a
+							>
+							<a class="nav-link dropdown-item ms-2" href="/login"
+								><b>Login</b></a
+							>
+							<% } %> <% if(currentUser){ %>
+							<a class="nav-link" href="/logout"><b>Logout</b></a>
+							<% } %>
+							<hr class="dropdown-divider" />
+							<a class="nav-link" href="/listings/new">Nest Your Home</a>
+						</ul>
+					</div>
+					<div class="col-2 col-lg-3 ms-auto">
+						<button class="btn btn-outline-dark">
 							<i class="fa-solid fa-moon"></i>
 						</button>
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </nav>
+
+<script>
+	let btn = document.getElementById("darkToggle");
+</script>
 
 <!-- <div class="btn-group dropdown nav-item">
 	<a type="button" class="btn btn-danger" href="/listings">Action</a>
@@ -90,3 +101,6 @@
 	</button>
 	<ul class="dropdown-menu"></ul>
 </div> -->
+<!-- 
+<h3>User Details</h3>
+ -->

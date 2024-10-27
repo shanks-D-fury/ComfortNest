@@ -117,3 +117,10 @@ html[data-bs-theme="dark"] .signUp-form {
 html[data-bs-theme="dark"] .navbar-toggler:focus {
 	box-shadow: 0 0.25rem 0.25rem #f1f1f15a;
 }
+html[data-bs-theme="dark"] .nav-link {
+	color: #f1f1f1 !important;
+}
+html[data-bs-theme="dark"] body,
+html {
+	overflow-x: hidden;
+}

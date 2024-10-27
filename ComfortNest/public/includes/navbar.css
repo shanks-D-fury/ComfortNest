@@ -42,7 +42,7 @@
 }
 @media (max-width: 992px) {
 	.search-input {
-		width: 50vw;
+		width: 60vw;
 	}
 }
 .search-input::placeholder {
@@ -78,7 +78,11 @@
 	opacity: 1;
 	transform: translateY(0);
 }
-
+.dropdown {
+	padding: 0 0.4rem;
+	/* position: relative;
+	top: 2px; */
+}
 /* icon toggle  */
 #darkToggle i {
 	transition: opacity 0.2s ease, transform 0.2s ease;
@@ -94,4 +98,17 @@
 .fade-in {
 	opacity: 1;
 	transform: scale(1);
+}
+@media (min-width: 1200px) {
+	.relative-search-bar {
+		position: relative;
+		left: 4rem;
+	}
+}
+.relative-icon {
+	position: relative;
+	left: 1rem;
+}
+.fa-sun {
+	font-size: smaller;
 }

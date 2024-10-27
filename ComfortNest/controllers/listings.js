@@ -87,15 +87,21 @@ module.exports.filterListings = async (req, res) => {
 module.exports.searchListings = async (req, res, next) => {
 	const { location } = req.query; // Get the search query from the URL
 	let query = {};
-	if (location) {
-		// Create a query to filter listings by location (case insensitive)
-		query.location = { $regex: location, $options: "i" };
-	}
 	try {
-		// Fetch listings based on the query
-		const listings = await hotelInfo.find(query);
-		// Render the index page with the filtered listings
-		res.render("listings/index.ejs", { featchedInfo: listings });
+		if (location) {
+			// Try finding by location (case insensitive)
+			query.location = { $regex: location, $options: "i" };
+			let listings = await hotelInfo.find(query);
+
+			// If no listings found by location, try finding by country
+			if (listings.length === 0) {
+				query = { country: { $regex: location, $options: "i" } };
+				listings = await hotelInfo.find(query);
+			}
+
+			// Render the index page with the filtered listings
+			res.render("listings/index.ejs", { featchedInfo: listings });
+		}
 	} catch (err) {
 		return next(err);
 	}

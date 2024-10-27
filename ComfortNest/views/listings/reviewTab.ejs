@@ -1,18 +1,13 @@
 <link rel="stylesheet" href="/listings/reviewTab.css" />
-<link rel="stylesheet" href="/listings/rating.css" />
 <link rel="stylesheet" href="/listings/customRating.css" />
 <% if(currentUser){ %>
-<div class="col offset-1 mb-3 tab-border mt-3">
+<div class="col-10 col-sm-11 col-md-12 col-lg-11 offset-1 mb-3 tab-border mt-3">
 	<form
 		action="/listings/<%=listing._id  %>/review"
 		method="post"
 		novalidate
 		class="needs-validation"
 	>
-		<!-- <div class="mb-1 rating-bar">
-			<label for="rating" class="form-label rating-form-label">Rating </label>
-			paste here
-		</div> -->
 		<div class="mb-1 rating-bar rating">
 			<div>
 				<label for="rating" class="form-label rating-form-label">Rating </label>
@@ -84,7 +79,7 @@
 			></textarea>
 			<div class="invalid-feedback">Please enter valid comment</div>
 		</div>
-		<button type="submit" class="btn btn-dark">submit</button>
+		<button type="submit" class="btn btn-outline-dark">submit</button>
 	</form>
 </div>
 <% } %>

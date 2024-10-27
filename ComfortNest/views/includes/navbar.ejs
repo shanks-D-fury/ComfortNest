@@ -12,7 +12,7 @@
 			></a
 		>
 		<button
-			class="navbar-toggler"
+			class="navbar-toggler btn btn-outline-dark"
 			type="button"
 			data-bs-toggle="collapse"
 			data-bs-target="#navbarNavAltMarkup"
@@ -20,7 +20,7 @@
 			aria-expanded="false"
 			aria-label="Toggle navigation"
 		>
-			<span class="navbar-toggler-icon"></span>
+			<i class="fa-solid fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav ms-auto">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="navbar-nav ms-auto">
 				<div class="row d-flex mt-lg-0 mt-3 justify-content-center">
-					<div class="dropdown-center col-4 col-lg-9 ms-auto">
+					<div class="dropdowncol-4 col-lg-9 ms-auto">
 						<button
 							type="button"
 							class="btn btn-outline-danger dropdown-toggle"
@@ -75,7 +75,7 @@
 						</ul>
 					</div>
 					<div class="col-2 col-lg-3 ms-auto">
-						<button class="btn btn-outline-dark">
+						<button class="btn btn-outline-dark" id="darkToggle">
 							<i class="fa-solid fa-moon"></i>
 						</button>
 					</div>
@@ -86,21 +86,24 @@
 </nav>
 
 <script>
-	let btn = document.getElementById("darkToggle");
-</script>
+	function setTheme(theme) {
+		document.documentElement.setAttribute("data-bs-theme", theme);
+		localStorage.setItem("theme", theme);
+		const darkToggle = document.getElementById("darkToggle");
+		const icon = darkToggle.querySelector("i");
+		icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+	}
 
-<!-- <div class="btn-group dropdown nav-item">
-	<a type="button" class="btn btn-danger" href="/listings">Action</a>
-	<button
-		type="button"
-		class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-		data-bs-toggle="dropdown"
-		aria-expanded="false"
-	>
-		<span class="visually-hidden">Toggle Dropdown</span>
-	</button>
-	<ul class="dropdown-menu"></ul>
-</div> -->
-<!-- 
-<h3>User Details</h3>
- -->
+	// Initialize theme on page load
+	document.addEventListener("DOMContentLoaded", () => {
+		const savedTheme = localStorage.getItem("theme") || "light";
+		setTheme(savedTheme);
+	});
+
+	// Toggle theme on button click
+	document.getElementById("darkToggle").addEventListener("click", () => {
+		const currentTheme = document.documentElement.getAttribute("data-bs-theme");
+		const newTheme = currentTheme === "dark" ? "light" : "dark";
+		setTheme(newTheme);
+	});
+</script>

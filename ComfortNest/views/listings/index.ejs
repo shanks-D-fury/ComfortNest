@@ -7,7 +7,7 @@
 		id="listingsContainer"
 	>
 		<% if (featchedInfo.length) { %> <% for(let listing of featchedInfo) {%>
-		<div class="card">
+		<div class="indexCard card">
 			<a href="/listings/<%= listing._id%>" id="normalTitleLink">
 				<img
 					src="<%=listing.image.url%>"

@@ -26,13 +26,15 @@
 	<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
 	<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
 	<div class="col col-btns">
-		<a href="/listings/<%=listing._id  %>/edit" class="btn btn-dark">Edit</a>
+		<a href="/listings/<%=listing._id  %>/edit" class="btn btn-outline-dark"
+			>Edit</a
+		>
 		<form
 			action="/listings/<%=listing._id  %>?_method=DELETE"
 			method="post"
 			class="card-deleteBtn"
 		>
-			<button class="btn btn-danger">DELETE</button>
+			<button class="btn btn-outline-danger ms-2">Delete</button>
 		</form>
 	</div>
 	<% } %><%- include("../listings/map.ejs") %>

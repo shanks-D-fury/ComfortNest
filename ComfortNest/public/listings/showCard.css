@@ -33,7 +33,7 @@
 }
 
 .tab-border {
-	border: solid rgba(0, 0, 0, 0.148) 1px;
+	border: solid rgba(0, 0, 0, 0.339) 1px;
 	border-radius: 1rem;
 	padding: 1rem;
 }
@@ -50,16 +50,10 @@
 
 #map {
 	height: 45vh;
-	width: 34svw;
 	border: 1px solid rgba(0, 0, 0, 0.378);
 	border-radius: 1rem;
 }
 
-@media (max-width: 767.9px) {
-	#map {
-		width: 60vw;
-	}
-}
 .show-relative-heading {
 	position: relative;
 	left: -0.25rem;

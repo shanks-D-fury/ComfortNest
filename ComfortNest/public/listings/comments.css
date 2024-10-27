@@ -23,6 +23,6 @@
 .card-title {
 	margin-bottom: 0;
 }
-/* .review-card {
-	margin-left: 1rem !important;
-} */
+.review-card {
+	border: solid rgba(0, 0, 0, 0.339) 1px;
+}

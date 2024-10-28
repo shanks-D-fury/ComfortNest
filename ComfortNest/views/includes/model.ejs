@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/includes/model.css" />
+<div
+	class="modal fade"
+	id="exampleModal"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">User Details</h1>
+			</div>
+			<div class="modal-body row">
+				<img
+					src="https://res.cloudinary.com/duvvugmgx/image/upload/v1730056687/3d-blue-profile-icon-symbol-260nw-2441954885-removebg-preview_kwahnf.png"
+					class="col-5 modal-image"
+				/>
+				<div class="col-7">
+					<% if(currentUser){ %>
+					<h5>Username:- <%= currentUser.username %></h5>
+					<h5>Email:- <%= currentUser.email %></h5>
+					<% } else{%>
+					<h5>Username:- Unknown</h5>
+					<h5>Email:- Unknown</h5>
+					<% } %>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn btn-outline-dark"
+					data-bs-dismiss="modal"
+				>
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

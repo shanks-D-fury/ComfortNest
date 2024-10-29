@@ -1,17 +1,21 @@
+if (process.env.NODE_ENV != "production") {
+	require("dotenv").config({ path: "../.env" }); // the path should mentioned or else the index.js file and the .env file should be at the same level
+}
 const mongoose = require("mongoose");
-// const initData = require("./newData.js");
-const initData = require("./data.js");
+const initData = require("./newData.js");
+// const initData = require("./data.js");
 const hotelInfo = require("../models/hotelListing.js");
 const Review = require("../models/reviews.js");
+const Mongo_url = process.env.ATLAS_MONGO_URL;
 
 main()
 	.then(() => {
-		console.log("Connection successful");
+		console.log("Mongo DB Connection Successful");
 	})
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect("mongodb://127.0.0.1:27017/ComfortNest");
+	await mongoose.connect(Mongo_url);
 }
 
 const init = async () => {
@@ -19,7 +23,7 @@ const init = async () => {
 	await Review.deleteMany({});
 	initData.data = initData.data.map((obj) => ({
 		...obj,
-		owner: "66fcdac2d6b780ece6f51985",
+		owner: "67211c3d444d96e6014d7507", // update this when ever the db is newly created
 	}));
 	await hotelInfo.insertMany(initData.data);
 	console.log("Data saved succesfull");

@@ -6,6 +6,7 @@ const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -18,14 +19,28 @@ const ExpressError = require("./utils/ExpressError.js");
 const listingsRouter = require("./routes/listings.js");
 const reviewsRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
+const Mongo_url = process.env.ATLAS_MONGO_URL;
+
+const store = MongoStore.create({
+	mongoUrl: Mongo_url,
+	crypto: {
+		secret: process.env.SESSION_SECRET_KEY,
+	},
+	touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", () => {
+	console.log("Mongo store Error", err);
+});
 
 const sessionOptions = {
+	store,
 	secret: process.env.SESSION_SECRET_KEY,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		expires: Date.now() + 3 * 24 * 60 * 60 * 1000,
-		maxAge: 3 * 24 * 60 * 60 * 1000,
+		expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+		maxAge: 7 * 24 * 60 * 60 * 1000,
 		httpOnly: true,
 	},
 };
@@ -55,7 +70,7 @@ main()
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect("mongodb://127.0.0.1:27017/ComfortNest");
+	await mongoose.connect(Mongo_url);
 }
 
 //home route

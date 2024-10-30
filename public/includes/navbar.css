@@ -42,7 +42,7 @@
 }
 @media (max-width: 992px) {
 	.search-input {
-		width: 60vw;
+		width: 70vw;
 	}
 }
 .search-input::placeholder {
@@ -118,4 +118,7 @@
 		position: relative;
 		left: 12.5vw;
 	}
+}
+.dropdown-divider {
+	margin: 0.15rem 0;
 }

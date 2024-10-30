@@ -70,7 +70,7 @@
 						<ul class="dropdown-menu">
 							<a
 								type="button"
-								class="dropdown-item nav-link mt-1"
+								class="dropdown-item nav-link mt-1 ms-2"
 								data-bs-toggle="modal"
 								data-bs-target="#exampleModal"
 							>
@@ -88,7 +88,9 @@
 								><b>Login</b></a
 							>
 							<% } %> <% if(currentUser){ %>
-							<a class="nav-link" href="/logout"><b>Logout</b></a>
+							<a class="nav-link dropdown-item ms-2" href="/logout"
+								><b>Logout</b></a
+							>
 							<% } %>
 						</ul>
 					</div>

@@ -36,7 +36,7 @@ store.on("error", () => {
 }); // TO HERE comment this while working on local machine
 
 const sessionOptions = {
-	// store, // comment this line for hosting from the local machine
+	store, // comment this line for hosting from the local machine
 	secret: process.env.SESSION_SECRET_KEY,
 	resave: false,
 	saveUninitialized: true,

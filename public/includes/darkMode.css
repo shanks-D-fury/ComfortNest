@@ -124,3 +124,17 @@ html[data-bs-theme="dark"] body,
 html {
 	overflow-x: hidden;
 }
+
+html[data-bs-theme="dark"] body::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.602);
+	border-radius: 1rem;
+	border: #f1f1f180 solid 0.25px;
+}
+html[data-bs-theme="dark"] body::-webkit-scrollbar-thumb {
+	background: #f1f1f19a; /* Scrollbar color */
+	border-radius: 1rem; /* Rounded edges */
+}
+
+html[data-bs-theme="dark"] body::-webkit-scrollbar-thumb:hover {
+	background: #f1f1f1; /* Darker on hover */
+}

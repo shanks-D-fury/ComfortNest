@@ -49,12 +49,15 @@ module.exports.editFormRender = async (req, res) => {
 };
 
 module.exports.updateListing = async (req, res) => {
+	let { location, country } = req.body.Listing;
+	const geometry = await Map_coordinates(location, country);
 	let { id } = req.params;
 	let listing = await hotelInfo.findByIdAndUpdate(id, { ...req.body.Listing });
 	if (typeof req.file != "undefined") {
 		listing.image.url = req.file.path;
 		listing.image.filename = req.file.filename;
 	}
+	listing.geometry = geometry;
 	await listing.save();
 	req.flash("success", "Listing Editied Succesfully");
 	res.redirect(`/listings/${id}`);

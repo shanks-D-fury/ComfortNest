@@ -52,29 +52,30 @@
 				</form>
 			</div>
 			<div class="navbar-nav ms-auto">
-				<div class="row d-flex mt-lg-0 mt-3">
-					<div class="dropdown col-6">
+				<div class="row d-flex mt-lg-0 mt-3 navbar-btns">
+					<div class="dropdown col-6 dropdown-profile-btn">
 						<button
 							type="button"
 							class="btn btn-outline-danger dropdown-toggle"
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
-							<i class="fa-regular fa-user me-2"></i><% if (currentUser) { %>
+							<i class="fa-regular fa-user me-2"></i><% if (typeof currentUser
+							!== 'undefined' && currentUser) { %>
 							<span><%= currentUser.username %></span>
 							<% } else { %>
 							<span>anonymous</span>
 							<% } %>
 						</button>
 						<ul class="dropdown-menu">
-							<button
+							<a
 								type="button"
-								class="dropdown-item btn btn-danger"
+								class="dropdown-item nav-link mt-1"
 								data-bs-toggle="modal"
 								data-bs-target="#exampleModal"
 							>
 								<b>profile</b>
-							</button>
+							</a>
 							<li><hr class="dropdown-divider" /></li>
 							<% if(!currentUser){ %>
 							<a

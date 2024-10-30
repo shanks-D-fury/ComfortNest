@@ -1,3 +1,11 @@
-.model-image {
+.modal-image {
 	border-radius: 50%;
+}
+@media (max-width: 992px) {
+	.modal-body-text h5 {
+		font-size: 1.15rem;
+	}
+	.modal-image {
+		scale: 0.85;
+	}
 }

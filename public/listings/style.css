@@ -30,3 +30,21 @@ body {
 	text-align: center;
 	/* margin-left: -10%; */
 }
+
+body::-webkit-scrollbar {
+	/* height: 8px; */
+	width: 0.65rem;
+}
+body::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: #909090; /* Scrollbar color */
+	border-radius: 10px; /* Rounded edges */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+	background: #6a6a6a; /* Darker on hover */
+}

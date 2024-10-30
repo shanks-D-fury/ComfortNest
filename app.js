@@ -19,22 +19,22 @@ const ExpressError = require("./utils/ExpressError.js");
 const listingsRouter = require("./routes/listings.js");
 const reviewsRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
-const Mongo_url = process.env.ATLAS_MONGO_URL;
+// const Mongo_url = process.env.ATLAS_MONGO_URL;
 
-const store = MongoStore.create({
-	mongoUrl: Mongo_url,
-	crypto: {
-		secret: process.env.SESSION_SECRET_KEY,
-	},
-	touchAfter: 24 * 60 * 60,
-});
+// const store = MongoStore.create({
+// 	mongoUrl: Mongo_url,
+// 	crypto: {
+// 		secret: process.env.SESSION_SECRET_KEY,
+// 	},
+// 	touchAfter: 24 * 60 * 60,
+// });
 
-store.on("error", () => {
-	console.log("Mongo store Error", err);
-});
+// store.on("error", () => {
+// 	console.log("Mongo store Error", err);
+// });
 
 const sessionOptions = {
-	store,
+	// store, // comment this line for hosting from the local machine
 	secret: process.env.SESSION_SECRET_KEY,
 	resave: false,
 	saveUninitialized: true,
@@ -60,7 +60,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser()); // these two lines are used to store the user in the session and remove respectively
+passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 main()
@@ -70,7 +70,7 @@ main()
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect(Mongo_url);
+	await mongoose.connect("mongodb://127.0.0.1:27017/ComfortNest");
 }
 
 //home route

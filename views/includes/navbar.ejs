@@ -68,15 +68,6 @@
 							<% } %>
 						</button>
 						<ul class="dropdown-menu">
-							<a
-								type="button"
-								class="dropdown-item nav-link mt-1 ms-2"
-								data-bs-toggle="modal"
-								data-bs-target="#exampleModal"
-							>
-								<b>profile</b>
-							</a>
-							<li><hr class="dropdown-divider" /></li>
 							<% if(!currentUser){ %>
 							<a
 								class="nav-link dropdown-item ms-2"
@@ -88,6 +79,15 @@
 								><b>Login</b></a
 							>
 							<% } %> <% if(currentUser){ %>
+							<a
+								type="button"
+								class="dropdown-item nav-link mt-1 ms-2"
+								data-bs-toggle="modal"
+								data-bs-target="#exampleModal"
+							>
+								<b>profile</b>
+							</a>
+							<li><hr class="dropdown-divider" /></li>
 							<a class="nav-link dropdown-item ms-2" href="/logout"
 								><b>Logout</b></a
 							>

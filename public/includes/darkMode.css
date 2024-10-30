@@ -16,8 +16,14 @@ html[data-bs-theme="dark"] .f-info {
 html[data-bs-theme="dark"] .f-info-links a {
 	color: #f1f1f1;
 }
+html[data-bs-theme="dark"] .f-info-socialMedia a i {
+	color: #f1f1f1 !important;
+}
 html[data-bs-theme="dark"] .indexCard {
 	box-shadow: 0 0.25rem 0.35rem #f1f1f15a;
+}
+html[data-bs-theme="dark"] .show-card {
+	border: solid #f1f1f18f 1px;
 }
 html[data-bs-theme="dark"] .indexCard:hover {
 	box-shadow: 0 0.5rem 0.5rem #f1f1f15a;

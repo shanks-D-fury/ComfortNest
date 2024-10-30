@@ -13,7 +13,7 @@ categoryButtons.forEach((button) => {
 				// Add the filtered listings
 				data.forEach((listing) => {
 					const listingHtml = `
-            <div class="card">
+            <div class="indexCard card">
               <a href="/listings/${listing._id}" id="normalTitleLink">
                 <img src="${listing.image.url}" class="card-img-top" alt="${
 						listing.title

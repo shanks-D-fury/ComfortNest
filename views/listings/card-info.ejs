@@ -1,8 +1,8 @@
 <div class="col offset-1">
-	<h2 class="col-md-12 mb-3 show-relative-heading">
+	<h2 class="col-md-12 col-11 mb-3 show-relative-heading">
 		<b class="show-non-italic"><%= listing.title%></b> <br />
 	</h2>
-	<div class="card col-md-12 show-card">
+	<div class="card col-md-12 col-11 show-card">
 		<img
 			src="<%= listing.image.url%>"
 			class="card-img-top"
@@ -22,20 +22,21 @@
 				<p class="card-text"><%= listing.location%> , <%= listing.country%></p>
 			</div>
 		</div>
+		<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
+		<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
+		<div class="col col-btns">
+			<a href="/listings/<%=listing._id  %>/edit" class="btn btn-outline-dark"
+				>Edit</a
+			>
+			<form
+				action="/listings/<%=listing._id  %>?_method=DELETE"
+				method="post"
+				class="card-deleteBtn"
+			>
+				<button class="btn btn-outline-danger ms-2">Delete</button>
+			</form>
+		</div>
+		<% } %>
 	</div>
-	<!-- Below the currentUser && is added because because when the is no user logedin the currentUser._id will be empty so the presence of currentUser is important  -->
-	<% if(currentUser && currentUser._id.equals(listing.owner._id)){ %>
-	<div class="col col-btns">
-		<a href="/listings/<%=listing._id  %>/edit" class="btn btn-outline-dark"
-			>Edit</a
-		>
-		<form
-			action="/listings/<%=listing._id  %>?_method=DELETE"
-			method="post"
-			class="card-deleteBtn"
-		>
-			<button class="btn btn-outline-danger ms-2">Delete</button>
-		</form>
-	</div>
-	<% } %><%- include("../listings/map.ejs") %>
+	<%- include("../listings/map.ejs") %>
 </div>

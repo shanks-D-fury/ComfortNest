@@ -42,7 +42,7 @@
 }
 @media (max-width: 992px) {
 	.search-input {
-		width: 70vw;
+		width: 60vw;
 	}
 }
 .search-input::placeholder {
@@ -103,6 +103,12 @@
 	.relative-search-bar {
 		position: relative;
 		left: 4rem;
+	}
+}
+@media (max-width: 991px) {
+	.relative-search-bar {
+		position: relative;
+		left: 5vw;
 	}
 }
 .relative-icon {

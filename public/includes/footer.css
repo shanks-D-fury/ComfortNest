@@ -35,12 +35,16 @@
 	flex-wrap: wrap;
 	justify-content: center;
 }
-.f-info-socialMedia i {
+.f-info-socialMedia a i {
 	margin-left: 1rem;
+	color: #222222 !important;
+}
+.f-info-socialMedia a {
+	text-decoration: none;
 }
 @media (max-width: 768px) {
 	.f-info-socialMedia {
-		margin-top: 0.25rem !important;
+		margin-top: 0.35rem !important;
 		margin-bottom: 0.5rem;
 	}
 	.f-info {

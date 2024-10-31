@@ -20,24 +20,24 @@ const ExpressError = require("./utils/ExpressError.js");
 const listingsRouter = require("./routes/listings.js");
 const reviewsRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
-// const Mongo_url = process.env.ATLAS_MONGO_URL;
-const Mongo_url = process.env.LOCAL_MAC_MONGO_URL; // uncomment for the Local Host
+const Mongo_url = process.env.ATLAS_MONGO_URL;
+// const Mongo_url = process.env.LOCAL_MAC_MONGO_URL; // uncomment for the Local Host
 
-// // FROM HERE
-// const store = MongoStore.create({
-// 	mongoUrl: Mongo_url,
-// 	crypto: {
-// 		secret: process.env.SESSION_SECRET_KEY,
-// 	},
-// 	touchAfter: 24 * 60 * 60,
-// });
+// FROM HERE
+const store = MongoStore.create({
+	mongoUrl: Mongo_url,
+	crypto: {
+		secret: process.env.SESSION_SECRET_KEY,
+	},
+	touchAfter: 24 * 60 * 60,
+});
 
-// store.on("error", () => {
-// 	console.log("Mongo store Error", err);
-// }); // TO HERE comment this while working on local machine
+store.on("error", () => {
+	console.log("Mongo store Error", err);
+}); // TO HERE comment this while working on local machine
 
 const sessionOptions = {
-	// store, // comment this line for hosting from the local machine
+	store, // comment this line for hosting from the local machine
 	secret: process.env.SESSION_SECRET_KEY,
 	resave: false,
 	saveUninitialized: true,

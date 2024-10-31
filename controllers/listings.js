@@ -1,5 +1,7 @@
 const hotelInfo = require("../models/hotelListing.js");
 const Map_coordinates = require("../utils/mapCoOridinates.js");
+const cloudinary = require("cloudinary").v2;
+const Review = require("../models/reviews.js");
 
 module.exports.indexListing = async (req, res) => {
 	const listings = await hotelInfo.find();
@@ -66,7 +68,16 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.destroyListing = async (req, res) => {
 	let { id } = req.params;
-	await hotelInfo.findByIdAndDelete(id);
+	let listing = await hotelInfo.findByIdAndDelete(id);
+	if (listing) {
+		await Review.deleteMany({ _id: { $in: listing.reviews } });
+		try {
+			await cloudinary.uploader.destroy(listing.image.filename);
+		} catch (err) {
+			req.flash("success", "Listing Deleted {Couldn't Find Image}");
+			return res.redirect(`/listings`);
+		}
+	}
 	req.flash("success", "Listing Deleted Succesfully");
 	res.redirect(`/listings`);
 };

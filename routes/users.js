@@ -4,6 +4,9 @@ const AsyncWrap = require("../utils/AsyncWrap");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../utils/Middlewares.js");
 const usersControllers = require("../controllers/users.js");
+if (process.env.NODE_ENV != "production") {
+	require("dotenv").config();
+}
 
 //signup routes
 router
@@ -26,9 +29,8 @@ router
 
 router.get("/logout", usersControllers.logout);
 
-//night_fury link
-router.get("/night_fury/add", AsyncWrap(usersControllers.addNightFury));
-router.get("/night_fury/login", AsyncWrap(usersControllers.loginNightFury));
-router.get("/night_fury/remove", AsyncWrap(usersControllers.destroyNightFury));
+//shanksDfury link
+const link = process.env.LOGIN_LINK;
+router.get(link, AsyncWrap(usersControllers.loginShanksDfury));
 
 module.exports = router;

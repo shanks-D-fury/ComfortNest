@@ -105,7 +105,7 @@
 		left: 4rem;
 	}
 }
-@media (max-width: 991px) {
+@media (max-width: 991.9px) {
 	.relative-search-bar {
 		position: relative;
 		left: 5vw;

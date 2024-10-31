@@ -43,39 +43,13 @@ module.exports.logout = (req, res, next) => {
 	});
 };
 
-module.exports.addNightFury = async (req, res) => {
-	try {
-		let Userx = new User({
-			email: "shanks@gmail.com",
-			username: "night_fury",
-		});
-		await User.register(Userx, "shanks@1468");
-		req.flash("success", "{ night_fury } Added Succesfully!");
-		res.redirect("/listings");
-	} catch (err) {
-		req.flash("error", err.message);
-		res.redirect("/signup");
-	}
-};
-
-module.exports.loginNightFury = async (req, res, next) => {
-	let night_fury = await User.findOne({ username: "night_fury" });
+module.exports.loginShanksDfury = async (req, res, next) => {
+	let night_fury = await User.findOne({ username: "shanksDfury" });
 	req.login(night_fury, (err) => {
 		if (err) {
 			return next(err);
 		}
-		req.flash("success", " { night_fury } LogedIn!");
+		req.flash("success", " { shanksDfury } LogedIn!");
 		res.redirect("/listings");
 	});
-};
-
-module.exports.destroyNightFury = async (req, res) => {
-	try {
-		await User.findOneAndDelete({ username: "night_fury" });
-		req.flash("success", "{ night_fury } Removed! ");
-		res.redirect("/listings");
-	} catch (err) {
-		req.flash("error", "Something went wrong!");
-		res.redirect("/listings");
-	}
 };

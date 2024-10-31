@@ -20,7 +20,8 @@ const ExpressError = require("./utils/ExpressError.js");
 const listingsRouter = require("./routes/listings.js");
 const reviewsRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
-const Mongo_url = process.env.ATLAS_MONGO_URL;
+// const Mongo_url = process.env.ATLAS_MONGO_URL;
+const Mongo_url = process.env.LOCAL_MAC_MONGO_URL; // uncomment for the Local Host
 
 // // FROM HERE
 // const store = MongoStore.create({
@@ -72,7 +73,7 @@ main()
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect(process.env.LOCAL_MAC_MONGO_URL); // use this while working on the local machine process.env.LOCAL_MAC_MONGO_URL
+	await mongoose.connect(Mongo_url);
 }
 
 //home route

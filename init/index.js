@@ -2,11 +2,14 @@ if (process.env.NODE_ENV != "production") {
 	require("dotenv").config({ path: "../.env" }); // the path should mentioned or else the index.js file and the .env file should be at the same level
 }
 const mongoose = require("mongoose");
-const initData = require("./newData.js");
-// const initData = require("./data.js");
+const initData = require("./newData.js"); // Own data
+// const initData = require("./data.js"); // Apna collage data
 const hotelInfo = require("../models/hotelListing.js");
+const User = require("../models/users.js");
 const Review = require("../models/reviews.js");
-const Mongo_url = process.env.ATLAS_MONGO_URL;
+
+// const Mongo_url = process.env.ATLAS_MONGO_URL; // Use this for Deployment
+const Mongo_url = process.env.LOCAL_MAC_MONGO_URL;
 
 main()
 	.then(() => {
@@ -19,11 +22,21 @@ async function main() {
 }
 
 const init = async () => {
+	await User.findOneAndDelete({ username: "shanksDfury" });
 	await hotelInfo.deleteMany({});
 	await Review.deleteMany({});
+
+	// Owner Credentials
+	const Owner = new User({
+		username: "shanksDfury",
+		email: process.env.SHANKS_D_FURY_EMAIL,
+	});
+	const user = await User.register(Owner, process.env.SHANKS_D_FURY_PASSWORD);
+	const Owner_id = user._id.toString();
+
 	initData.data = initData.data.map((obj) => ({
 		...obj,
-		owner: "67211c3d444d96e6014d7507", // update this when ever the db is newly created
+		owner: Owner_id, // update this when ever the db is newly created
 	}));
 	await hotelInfo.insertMany(initData.data);
 	console.log("Data saved succesfull");

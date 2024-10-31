@@ -2,8 +2,9 @@ const hotelInfo = require("../models/hotelListing.js");
 const Map_coordinates = require("../utils/mapCoOridinates.js");
 
 module.exports.indexListing = async (req, res) => {
-	const featchedInfo = await hotelInfo.find();
-	res.render("listings/index.ejs", { featchedInfo });
+	const listings = await hotelInfo.find();
+	const reversedListings = listings.reverse();
+	res.render("listings/index.ejs", { featchedInfo: reversedListings });
 };
 
 module.exports.newFormRender = (req, res) => {
@@ -77,10 +78,11 @@ module.exports.filterListings = async (req, res) => {
 		// If "all" is selected, return all listings; otherwise, filter by category
 		if (category === "all") {
 			listings = await hotelInfo.find({});
+			listings = listings.reverse();
 		} else {
 			listings = await hotelInfo.find({ category });
+			listings = listings.reverse();
 		}
-
 		res.json(listings);
 	} catch (error) {
 		res.status(500).json({ message: "Error fetching listings" });
@@ -95,13 +97,14 @@ module.exports.searchListings = async (req, res, next) => {
 			// Try finding by location (case insensitive)
 			query.location = { $regex: location, $options: "i" };
 			let listings = await hotelInfo.find(query);
+			listings = listings.reverse();
 
 			// If no listings found by location, try finding by country
 			if (listings.length === 0) {
 				query = { country: { $regex: location, $options: "i" } };
 				listings = await hotelInfo.find(query);
+				listings = listings.reverse();
 			}
-
 			// Render the index page with the filtered listings
 			res.render("listings/index.ejs", { featchedInfo: listings });
 		}

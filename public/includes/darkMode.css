@@ -144,3 +144,12 @@ html[data-bs-theme="dark"] body::-webkit-scrollbar-thumb {
 html[data-bs-theme="dark"] body::-webkit-scrollbar-thumb:hover {
 	background: #f1f1f1; /* Darker on hover */
 }
+
+html[data-bs-theme="dark"] .alert-danger {
+	color: #f1f1f1;
+	background-color: #560007;
+}
+html[data-bs-theme="dark"] .alert-success {
+	color: #f1f1f1;
+	background-color: #00522d;
+}

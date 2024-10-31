@@ -20,11 +20,11 @@
 				/>
 				<div class="col-7 modal-body-text">
 					<% if(currentUser){ %>
-					<h5>Username:- <%= currentUser.username %></h5>
-					<h5>Email:- <%= currentUser.email %></h5>
+					<span>Username:- <%= currentUser.username %></span><br />
+					<span>Email:- <%= currentUser.email %></span>
 					<% } else{%>
-					<h5>Username:- Unknown</h5>
-					<h5>Email:- Unknown</h5>
+					<span>Username:- Unknown</span><br />
+					<span>Email:- Unknown</span>
 					<% } %>
 				</div>
 			</div>

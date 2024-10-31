@@ -28,13 +28,16 @@
 			<a href="/listings/<%=listing._id  %>/edit" class="btn btn-outline-dark"
 				>Edit</a
 			>
-			<form
-				action="/listings/<%=listing._id  %>?_method=DELETE"
-				method="post"
-				class="card-deleteBtn"
+
+			<a
+				type="button"
+				class="btn btn-outline-danger ms-2"
+				data-bs-toggle="modal"
+				data-bs-target="#deleteModal"
 			>
-				<button class="btn btn-outline-danger ms-2">Delete</button>
-			</form>
+				Delete
+			</a>
+			<%- include("../includes/deleteModal.ejs") %>
 		</div>
 		<% } %>
 	</div>

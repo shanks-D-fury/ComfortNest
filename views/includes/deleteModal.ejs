@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/includes/model.css" />
+<div
+	class="modal fade"
+	id="deleteModal"
+	tabindex="-1"
+	aria-labelledby="deleteModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5 ms-3" id="deleteModalLabel">
+					Confirm Deletion
+				</h1>
+			</div>
+			<div class="modal-body row">
+				<div class="col modal-body-text">
+					<h6 class="mb-3 delete-modal-heading">Are you sure ?</h6>
+					<br />
+					<span class="alert alert-warning"
+						>"<%=listing.title %>" Listing will be permanently Deleted !
+					</span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn btn-outline-dark"
+					data-bs-dismiss="modal"
+				>
+					Cancel
+				</button>
+				<form
+					action="/listings/<%=listing._id  %>?_method=DELETE"
+					method="post"
+					class="card-deleteBtn"
+				>
+					<button class="btn btn-outline-danger ms-2">Confirm</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -71,12 +71,7 @@ module.exports.destroyListing = async (req, res) => {
 	let listing = await hotelInfo.findByIdAndDelete(id);
 	if (listing) {
 		await Review.deleteMany({ _id: { $in: listing.reviews } });
-		try {
-			await cloudinary.uploader.destroy(listing.image.filename);
-		} catch (err) {
-			req.flash("success", "Listing Deleted {Couldn't Find Image}");
-			return res.redirect(`/listings`);
-		}
+		await cloudinary.uploader.destroy(listing.image.filename);
 	}
 	req.flash("success", "Listing Deleted Succesfully");
 	res.redirect(`/listings`);
